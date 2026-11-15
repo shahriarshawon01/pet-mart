@@ -14,16 +14,7 @@
         </div>
 
         <div class="pm-topbar-actions">
-            <router-link
-                v-if="pendingTotal"
-                to="/admin/marketplace/moderation"
-                class="pm-icon-btn"
-                :title="`${pendingTotal} item(s) need attention`"
-                aria-label="Items that need attention"
-            >
-                <i class="fa-regular fa-bell"></i>
-                <span class="pm-dot"></span>
-            </router-link>
+            <notification-bell></notification-bell>
             <a v-if="frontendUrl" :href="frontendUrl" target="_blank" rel="noopener" class="pm-icon-btn d-none d-sm-inline-grid" title="Open the customer site">
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
@@ -60,8 +51,11 @@
 </template>
 
 <script>
+import NotificationBell from "../../components/notificationBell";
+
 export default {
     name: "topNavBar",
+    components: { NotificationBell },
     computed: {
         user() {
             return (this.Config && this.Config.user) || {};
@@ -81,10 +75,6 @@ export default {
         csrfToken() {
             const meta = document.querySelector('meta[name="csrf-token"]');
             return meta ? meta.getAttribute('content') : '';
-        },
-        pendingTotal() {
-            const b = (this.Config && this.Config.badges) || {};
-            return (b.moderation || 0) + (b.report || 0) + (b.contact_message || 0);
         },
         section() {
             const p = this.$route.path;

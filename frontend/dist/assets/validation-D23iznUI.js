@@ -1,2 +1,0 @@
-import{y as s,E as c}from"./index-TAZWbog1.js";const l=r=>String(r??"").trim()==="";function m(r,o={}){const e=Object.entries(r).filter(([,t])=>t);if(!e.length)return;e.length===1?s.error(e[0][1]):s.error(`${e.length} fields need your attention`,{description:e.map(([,t])=>`• ${t}`).join(`
-`),classNames:{description:"whitespace-pre-line"}});const i=o[e[0][0]]||e[0][0];setTimeout(()=>{var n;const t=document.getElementById(i);c(t,{center:!0}),(n=t==null?void 0:t.focus)==null||n.call(t,{preventScroll:!0})},50)}export{l as i,m as t};

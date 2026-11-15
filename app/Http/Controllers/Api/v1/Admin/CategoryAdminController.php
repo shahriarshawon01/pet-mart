@@ -133,6 +133,7 @@ class CategoryAdminController extends AdminController
 
         $data = $request->validate([
             'name'          => ['required', 'string', 'max:100'],
+            'placeholder'   => ['nullable', 'string', 'max:150'],
             'attribute_key' => ['required', 'string', 'max:80',
                 Rule::unique('category_attributes', 'attribute_key')->where('category_id', $categoryId)->ignore($ignoreId)],
             'type'          => ['required', 'in:text,number,select,boolean'],
@@ -180,6 +181,7 @@ class CategoryAdminController extends AdminController
             'attributes'     => $c->attributes->sortBy('sort_order')->map(fn (CategoryAttribute $a) => [
                 'id'            => $a->id,
                 'name'          => $a->name,
+                'placeholder'   => $a->placeholder,
                 'attribute_key' => $a->attribute_key,
                 'type'          => $a->type,
                 'options'       => $a->options,

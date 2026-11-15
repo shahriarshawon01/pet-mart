@@ -144,6 +144,11 @@
                                 <label class="form-check-label" for="f-req">Required</label>
                             </div>
                         </div>
+                        <div class="col-12" v-if="field.type === 'text' || field.type === 'number'">
+                            <label class="form-label" for="f-ph">Placeholder</label>
+                            <input id="f-ph" v-model="field.placeholder" class="form-control" placeholder="e.g. Golden Retriever, Persian, Local" maxlength="150">
+                            <div class="form-text">Hint shown inside the empty box on the Post a listing form.</div>
+                        </div>
                         <div class="col-12" v-if="field.type === 'select'">
                             <label class="form-label" for="f-opts">Choices <span class="req">*</span></label>
                             <input id="f-opts" v-model="field.optionsText" class="form-control" placeholder="Fully vaccinated, Partly vaccinated, Not vaccinated">
@@ -168,7 +173,7 @@ import FormModal from "../../components/formModal";
 import GeneralModal from "../../components/generalModal";
 import ImageUpload from "../../components/imageUpload";
 
-const EMPTY_FIELD = () => ({ id: null, name: '', attribute_key: '', type: 'text', is_required: false, optionsText: '' });
+const EMPTY_FIELD = () => ({ id: null, name: '', placeholder: '', attribute_key: '', type: 'text', is_required: false, optionsText: '' });
 
 export default {
     name: "categoryList",
@@ -229,7 +234,7 @@ export default {
             this.field = EMPTY_FIELD();
         },
         editField(a) {
-            this.field = { id: a.id, name: a.name, attribute_key: a.attribute_key, type: a.type, is_required: a.is_required, optionsText: (a.options || []).join(', ') };
+            this.field = { id: a.id, name: a.name, placeholder: a.placeholder || '', attribute_key: a.attribute_key, type: a.type, is_required: a.is_required, optionsText: (a.options || []).join(', ') };
         },
         saveField() {
             if (!this.field.name.trim()) {
@@ -243,6 +248,7 @@ export default {
             }
             const payload = {
                 name: this.field.name.trim(),
+                placeholder: ['text', 'number'].includes(this.field.type) ? (this.field.placeholder || '').trim() || null : null,
                 attribute_key: this.field.attribute_key || this.field.name,
                 type: this.field.type,
                 is_required: this.field.is_required,

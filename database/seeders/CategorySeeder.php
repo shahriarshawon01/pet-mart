@@ -85,6 +85,7 @@ class CategorySeeder extends Seeder
             ['category_id' => $dogs->id, 'attribute_key' => 'breed'],
             [
                 'name' => 'Breed',
+                'placeholder' => 'e.g. Golden Retriever, Persian, Local',
                 'type' => 'text',
                 'is_required' => true,
                 'is_filterable' => true,
@@ -96,6 +97,7 @@ class CategorySeeder extends Seeder
             ['category_id' => $dogs->id, 'attribute_key' => 'age'],
             [
                 'name' => 'Age (Months/Years)',
+                'placeholder' => 'e.g. 3 months or 2 years',
                 'type' => 'text',
                 'is_required' => true,
                 'is_filterable' => true,
@@ -131,6 +133,7 @@ class CategorySeeder extends Seeder
             ['category_id' => $cats->id, 'attribute_key' => 'breed'],
             [
                 'name' => 'Breed',
+                'placeholder' => 'e.g. Golden Retriever, Persian, Local',
                 'type' => 'text',
                 'is_required' => true,
                 'is_filterable' => true,
@@ -142,6 +145,7 @@ class CategorySeeder extends Seeder
             ['category_id' => $cats->id, 'attribute_key' => 'age'],
             [
                 'name' => 'Age (Months/Years)',
+                'placeholder' => 'e.g. 3 months or 2 years',
                 'type' => 'text',
                 'is_required' => true,
                 'is_filterable' => true,

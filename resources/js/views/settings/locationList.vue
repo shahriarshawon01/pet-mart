@@ -76,15 +76,38 @@
 
         <form-modal modal-size="modal-md" :title="modalHeading" :submit-text="form.id ? 'Save changes' : 'Add'" @submit="save">
             <p v-if="form.parentName" class="text-muted mb-3">In <strong class="text-dark">{{ form.parentName }}</strong></p>
+            <div v-if="similar.length" class="loc-similar" role="alert">
+                <div class="loc-similar-head">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div>
+                        <strong>Is this the same place?</strong>
+                        <p>A similar {{ (LABELS[form.type] || '').toLowerCase() }} already exists. Adding a second spelling splits listings and confuses buyers.</p>
+                    </div>
+                </div>
+                <ul>
+                    <li v-for="s in similar" :key="s.id">
+                        <span>
+                            <strong>{{ s.name }}</strong><template v-if="s.bn_name"> ({{ s.bn_name }})</template>
+                            <small v-if="s.parent"> · in {{ s.parent }}</small>
+                        </span>
+                        <span v-if="!s.status" class="badge bg-secondary-subtle text-secondary">Hidden</span>
+                    </li>
+                </ul>
+                <div class="loc-similar-actions">
+                    <button type="button" class="btn btn-sm btn-light" @click="cancelSimilar">Change the name</button>
+                    <button type="button" class="btn btn-sm btn-warning" @click="save(true)">It's different, {{ form.id ? 'save' : 'add' }} anyway</button>
+                </div>
+            </div>
             <div class="row g-3">
                 <div class="col-md-7">
                     <label class="form-label" for="loc-name">Name (English) <span class="req">*</span></label>
-                    <input id="loc-name" v-model="form.name" class="form-control" maxlength="100" placeholder="e.g. Mirpur" :class="{ 'is-invalid': errors.name || errors.slug }">
+                    <input id="loc-name" v-model="form.name" class="form-control" maxlength="100" placeholder="e.g. Mirpur" :class="{ 'is-invalid': errors.name || errors.slug }" @input="clearFeedback('name')">
                     <span v-if="errors.name || errors.slug" class="error_message">{{ errors.name || errors.slug }}</span>
                 </div>
                 <div class="col-md-5">
                     <label class="form-label" for="loc-bn">Name (Bangla)</label>
-                    <input id="loc-bn" v-model="form.bn_name" class="form-control" maxlength="100" lang="bn" placeholder="যেমন মিরপুর">
+                    <input id="loc-bn" v-model="form.bn_name" class="form-control" maxlength="100" lang="bn" placeholder="যেমন মিরপুর" :class="{ 'is-invalid': errors.bn_name }" @input="clearFeedback('bn_name')">
+                    <span v-if="errors.bn_name" class="error_message">{{ errors.bn_name }}</span>
                 </div>
                 <div class="col-md-5">
                     <label class="form-label" for="loc-order">Order</label>
@@ -121,6 +144,8 @@ export default {
             search: { division: '', district: '', area: '' },
             form: EMPTY(),
             errors: {},
+            similar: [],
+            LABELS,
         };
     },
     computed: {
@@ -196,31 +221,59 @@ export default {
         create(col) {
             this.errors = {};
             this.form = { ...EMPTY(), type: col.type, parent_id: col.parent ? col.parent.id : null, parentName: col.parent ? col.parent.name : '' };
+            this.similar = [];
             this.openModal('formModal', this.modalHeading, false, false);
         },
         edit(loc) {
             this.errors = {};
             const parent = this.byId[loc.parent_id];
             this.form = { ...EMPTY(), ...loc, bn_name: loc.bn_name || '', parentName: parent ? parent.name : '' };
+            this.similar = [];
             this.openModal('formModal', this.modalHeading, false, false);
         },
-        save() {
+        save(confirmSimilar = false) {
             if (!this.form.name.trim()) {
                 this.errors = { name: 'Name is required.' };
                 return;
             }
             const payload = { name: this.form.name.trim(), bn_name: this.form.bn_name || null, sort_order: this.form.sort_order || 0, status: this.form.status };
-            const req = this.form.id
-                ? this.adminRequest('put', `api/v1/admin/locations/${this.form.id}`, payload)
-                : this.adminRequest('post', 'api/v1/admin/locations', { ...payload, parent_id: this.form.parent_id });
+            if (confirmSimilar === true) payload.confirm_similar = 1;
+            const request = this.form.id
+                ? { method: 'put', url: `api/v1/admin/locations/${this.form.id}`, data: payload }
+                : { method: 'post', url: 'api/v1/admin/locations', data: { ...payload, parent_id: this.form.parent_id } };
+
             this.$store.commit('httpRequest', true);
-            req.then(() => {
-                this.closeModal('formModal', false);
-                this.load();
-            }).catch((err) => {
-                const bag = (err.response && err.response.data && err.response.data.errors) || {};
-                this.errors = Object.fromEntries(Object.entries(bag).map(([k, v]) => [k, v[0]]));
-            }).finally(() => this.$store.commit('httpRequest', false));
+            this.axios({ ...request, url: this.urlGenerate(request.url) })
+                .then((res) => {
+                    const body = res.data || {};
+                    if (parseInt(body.status) !== 2000) throw { response: { status: 422, data: body } };
+                    this.$toastr('success', body.message || 'Saved.', 'Done');
+                    this.similar = [];
+                    this.closeModal('formModal', false);
+                    this.load();
+                })
+                .catch((err) => {
+                    const res = err.response || {};
+                    const body = res.data || {};
+                    if (res.status === 409 && Array.isArray(body.similar)) {
+                        this.errors = {};
+                        this.similar = body.similar;
+                        this.$toastr('warning', body.message || 'A similar location already exists. Is this the same place?', 'Check the name');
+                        return;
+                    }
+                    const bag = body.errors || {};
+                    this.errors = Object.fromEntries(Object.entries(bag).map(([k, v]) => [k, Array.isArray(v) ? v[0] : v]));
+                    this.$toastr('error', this.httpErrorMessage(err), 'Error');
+                })
+                .finally(() => this.$store.commit('httpRequest', false));
+        },
+        clearFeedback(field) {
+            if (this.errors[field] || (field === 'name' && this.errors.slug)) this.errors = {};
+            if (field === 'name') this.similar = [];
+        },
+        cancelSimilar() {
+            this.similar = [];
+            this.$nextTick(() => document.getElementById('loc-name')?.focus());
         },
         toggle(loc) {
             this.adminRequest('post', `api/v1/admin/locations/${loc.id}/toggle-status`)
@@ -241,6 +294,15 @@ export default {
 </script>
 
 <style scoped>
+.loc-similar { border: 1px solid #fcd34d; background: #fffbeb; border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+.loc-similar-head { display: flex; gap: 12px; }
+.loc-similar-head i { color: #d97706; font-size: 18px; margin-top: 2px; }
+.loc-similar-head strong { color: #92400e; font-size: 14px; }
+.loc-similar-head p { margin: 2px 0 0; color: #a16207; font-size: 12.5px; }
+.loc-similar ul { list-style: none; margin: 10px 0 12px 30px; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.loc-similar li { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: #fff; border: 1px solid #fde68a; border-radius: 8px; padding: 7px 10px; font-size: 13px; }
+.loc-similar li small { color: var(--pm-muted); }
+.loc-similar-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
 .loc-col { display: flex; flex-direction: column; height: calc(100vh - 230px); min-height: 420px; }
 .loc-col.is-disabled { opacity: 0.7; }
 .loc-search { position: relative; padding: 10px 16px; border-bottom: 1px solid var(--pm-border); }

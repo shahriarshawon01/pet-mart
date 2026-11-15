@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1\Admin;
 
 use App\Models\AdminModerationLog;
 use App\Models\Product;
+use App\Services\AdminNotifier;
 use App\Services\ImageStorage;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -60,6 +61,17 @@ class ModerationController extends AdminController
         return $this->ok($result);
     }
 
+    public function show(int $id): JsonResponse
+    {
+        $product = Product::with(['category.parent', 'user', 'images', 'attributes', 'division', 'district', 'area', 'moderationLogs.admin:id,name'])
+            ->find($id);
+        if (! $product) {
+            return $this->error('This listing has been deleted.', 404);
+        }
+
+        return $this->ok($this->present($product));
+    }
+
     /** Soft delete (kept for the audit trail; removed for good by listings:prune after 30 days). */
     public function destroy(Request $request, int $id): JsonResponse
     {
@@ -75,6 +87,7 @@ class ModerationController extends AdminController
             $product->update(['is_featured' => false]);
             $product->delete();
         });
+        AdminNotifier::resolveListing($product->id);
 
         return $this->ok(null, 'Listing deleted.');
     }
@@ -139,6 +152,8 @@ class ModerationController extends AdminController
                 'reason'     => $reason,
             ]);
         });
+
+        AdminNotifier::resolveListing($product->id);
     }
 
     private function present(Product $p): array

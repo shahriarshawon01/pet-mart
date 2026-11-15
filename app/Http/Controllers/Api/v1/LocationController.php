@@ -5,13 +5,18 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Location;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
-    public function index(): JsonResponse
+    /** Browsers revalidate on every request (cheap 304 via ETag), so admin changes show up immediately. */
+    public function index(Request $request): JsonResponse
     {
-        return response()
-            ->json(['status' => true, 'data' => Location::publicTree()])
-            ->header('Cache-Control', 'public, max-age=300');
+        $response = response()->json(['status' => true, 'data' => Location::publicTree()]);
+        $response->setEtag(md5($response->getContent()));
+        $response->headers->set('Cache-Control', 'no-cache, private');
+        $response->isNotModified($request);
+
+        return $response;
     }
 }

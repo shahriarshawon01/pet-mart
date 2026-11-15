@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\v1\Admin\InquiryAdminController;
 use App\Http\Controllers\Api\v1\Admin\DashboardAdminController;
 use App\Http\Controllers\Api\v1\Admin\LocationAdminController;
 use App\Http\Controllers\Api\v1\Admin\ModerationController;
+use App\Http\Controllers\Api\v1\Admin\NotificationAdminController;
 use App\Http\Controllers\Api\v1\Admin\ReportAdminController;
 use App\Http\Controllers\Api\v1\Admin\UploadAdminController;
 use App\Http\Controllers\Api\v1\Admin\AdminUserController;
@@ -56,9 +57,16 @@ Route::middleware(['web', 'admin'])->group(function () {
     Route::prefix('v1/admin')->group(function () {
         Route::get('/dashboard-stats', [DashboardAdminController::class, 'stats']);
 
+        Route::get('/notifications', [NotificationAdminController::class, 'index']);
+        Route::get('/notifications/summary', [NotificationAdminController::class, 'summary']);
+        Route::post('/notifications/read-all', [NotificationAdminController::class, 'markAllRead']);
+        Route::post('/notifications/{id}/read', [NotificationAdminController::class, 'markRead'])->whereUuid('id');
+        Route::delete('/notifications/{id}', [NotificationAdminController::class, 'destroy'])->whereUuid('id');
+
         Route::post('/uploads/images', [UploadAdminController::class, 'image'])->middleware('throttle:30,1');
 
         Route::get('/moderation', [ModerationController::class, 'index']);
+        Route::get('/moderation/{id}', [ModerationController::class, 'show'])->whereNumber('id');
         Route::post('/moderation/{id}/approve', [ModerationController::class, 'approve'])->whereNumber('id');
         Route::post('/moderation/{id}/reject', [ModerationController::class, 'reject'])->whereNumber('id');
         Route::post('/moderation/{id}/feature', [ModerationController::class, 'toggleFeatured'])->whereNumber('id');

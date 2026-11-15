@@ -10,6 +10,7 @@ class CategoryAttribute extends Model
     protected $fillable = [
         'category_id',
         'name',
+        'placeholder',
         'attribute_key',
         'type',
         'options',

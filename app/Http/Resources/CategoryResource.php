@@ -24,6 +24,7 @@ class CategoryResource extends JsonResource
                 return $this->attributes->map(fn($attr) => [
                     'id' => $attr->id,
                     'name' => $attr->name,
+                    'placeholder' => $attr->placeholder,
                     'attribute_key' => $attr->attribute_key,
                     'type' => $attr->type,
                     'options' => $attr->options,

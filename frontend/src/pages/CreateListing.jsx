@@ -497,6 +497,7 @@ export default function CreateListing() {
                           label={a.name}
                           required={a.is_required}
                           type={a.type === 'number' ? 'number' : 'text'}
+                          placeholder={a.placeholder || `Enter ${a.name.replace(/\s*\(.*\)\s*/, '').toLowerCase()}`}
                           value={value}
                           onChange={(e) => onChange(e.target.value)}
                           error={error}

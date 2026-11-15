@@ -8,6 +8,7 @@ use App\Http\Resources\ProductDetailResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\AdminNotifier;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -144,6 +145,8 @@ class ProductController extends Controller
             return $product;
         });
 
+        $this->notifyAdmins($product, false);
+
         return response()->json([
             'status'  => true,
             'message' => 'Listing submitted. Our moderators will review it before it goes live.',
@@ -163,6 +166,8 @@ class ProductController extends Controller
             $product->update($this->listingFields($request) + ['status' => 'pending', 'rejection_reason' => null]);
             $this->syncImagesAndAttributes($product, $request);
         });
+
+        $this->notifyAdmins($product, true);
 
         return response()->json([
             'status'  => true,
@@ -254,5 +259,14 @@ class ProductController extends Controller
         } while (Product::withTrashed()->where('slug', $slug)->exists());
 
         return $slug;
+    }
+
+    private function notifyAdmins(Product $product, bool $resubmitted): void
+    {
+        try {
+            AdminNotifier::listingSubmitted($product, $resubmitted);
+        } catch (\Throwable $e) {
+            report($e);
+        }
     }
 }

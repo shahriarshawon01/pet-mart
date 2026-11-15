@@ -342,6 +342,7 @@ export default {
         reload() {
             this.getDataList(this.currentPagination || 1);
             this.getConfigurations();
+            this.$root.$emit('notifications:refresh');
         },
         remove(item) {
             this.confirmBox((ok) => {
@@ -408,6 +409,14 @@ export default {
                 .catch(() => {})
                 .finally(() => this.$store.commit('httpRequest', false));
         },
+        openFromQuery() {
+            const id = parseInt(this.$route.query.listing, 10);
+            if (!id) return;
+            this.$router.replace({ query: Object.assign({}, this.$route.query, { listing: undefined }) }).catch(() => {});
+            this.adminRequest('get', `api/v1/admin/moderation/${id}`, {}, { silent: true })
+                .then((item) => this.view(item))
+                .catch(() => {});
+        },
         toggleFeatured(item) {
             this.busyId = item.id;
             this.adminRequest('post', `api/v1/admin/moderation/${item.id}/feature`)
@@ -419,6 +428,12 @@ export default {
     mounted() {
         ['category_id', 'listing_type', 'featured', 'sort'].forEach((k) => this.$set(this.formFilter, k, ''));
         this.filterStatus(this.isAll ? 'active' : 'pending');
+        this.openFromQuery();
+    },
+    watch: {
+        '$route.query.listing'(value) {
+            if (value) this.openFromQuery();
+        },
     },
 }
 </script>

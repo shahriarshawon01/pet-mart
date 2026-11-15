@@ -1,1 +1,0 @@
-import{j as a}from"./index-TAZWbog1.js";function o({children:x,className:s="",...t}){return a.jsx("div",{className:`w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${s}`,...t,children:x})}export{o as C};
