@@ -67,7 +67,7 @@ export default function Login() {
       footer={
         <>
           New to PetMart?{' '}
-          <Link to="/register" state={location.state} className="font-semibold text-primary-hover hover:underline">
+          <Link to="/register" state={location.state} className="font-semibold text-primary hover:underline">
             Create an account
           </Link>
         </>
@@ -93,11 +93,12 @@ export default function Login() {
           label="Password"
           required
           autoComplete="current-password"
+          placeholder="Enter your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           error={errors.password}
           labelAction={
-            <Link to="/forgot-password" className="text-xs font-semibold text-primary-hover hover:underline">
+            <Link to="/forgot-password" className="text-xs font-semibold text-primary hover:underline">
               Forgot password?
             </Link>
           }

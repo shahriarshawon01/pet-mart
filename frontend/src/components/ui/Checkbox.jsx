@@ -11,7 +11,7 @@ export function Checkbox({ label, hint, error, id, className = '', ...props }) {
           className="w-4 h-4 rounded border-border text-primary focus:ring-2 focus:ring-primary/20 focus:ring-offset-0 cursor-pointer"
           {...props}
         />
-        <span className="text-sm font-medium text-navy">{label}</span>
+        <span className="text-sm font-medium text-ink">{label}</span>
       </label>
       {hint && !error && <p className="text-xs text-muted ml-6">{hint}</p>}
       {error && <p className="text-xs text-red-500 font-medium ml-6">{error}</p>}

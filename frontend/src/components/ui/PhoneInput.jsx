@@ -17,13 +17,13 @@ export const PhoneInput = forwardRef(function PhoneInput(
   return (
     <div className="flex flex-col gap-1">
       {label && (
-        <label htmlFor={id} className="text-sm font-semibold text-navy">
+        <label htmlFor={id} className="text-sm font-semibold text-ink">
           {label}
           {required && <span className="ml-0.5 text-red-500">*</span>}
         </label>
       )}
       <div className="flex">
-        <span className="inline-flex select-none items-center rounded-l-lg border border-r-0 border-border bg-slate-50 px-3 text-sm font-semibold text-muted">
+        <span className="inline-flex select-none items-center rounded-l-lg border border-r-0 border-border bg-zinc-50 px-3 text-sm font-semibold text-muted">
           +88
         </span>
         <input
@@ -35,7 +35,7 @@ export const PhoneInput = forwardRef(function PhoneInput(
           placeholder="01XXXXXXXXX"
           maxLength={11}
           onChange={handleChange}
-          className={`min-w-0 flex-1 rounded-r-lg border bg-white px-3 py-2.5 text-sm text-navy outline-none transition-all placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 ${
+          className={`min-w-0 flex-1 rounded-r-lg border bg-white px-3 py-2.5 text-sm text-ink outline-none transition-all placeholder:text-zinc-400 focus:border-primary focus:ring-2 focus:ring-primary/20 ${
             error ? 'border-red-400' : 'border-border'
           } ${className}`}
           aria-invalid={!!error}

@@ -10,7 +10,7 @@ export const PasswordInput = forwardRef(function PasswordInput(
     <div className="flex flex-col gap-1">
       <div className="flex items-center justify-between gap-2">
         {label && (
-          <label htmlFor={id} className="text-sm font-semibold text-navy">
+          <label htmlFor={id} className="text-sm font-semibold text-ink">
             {label}
             {required && <span className="ml-0.5 text-red-500">*</span>}
           </label>
@@ -22,7 +22,7 @@ export const PasswordInput = forwardRef(function PasswordInput(
           ref={ref}
           id={id}
           type={visible ? 'text' : 'password'}
-          className={`w-full rounded-lg border bg-white py-2.5 pl-3 pr-11 text-sm text-navy outline-none transition-all placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 ${
+          className={`w-full rounded-lg border bg-white py-2.5 pl-3 pr-11 text-sm text-ink outline-none transition-all placeholder:text-zinc-400 focus:border-primary focus:ring-2 focus:ring-primary/20 ${
             error ? 'border-red-400' : 'border-border'
           } ${className}`}
           aria-invalid={!!error}
@@ -32,7 +32,7 @@ export const PasswordInput = forwardRef(function PasswordInput(
         <button
           type="button"
           onClick={() => setVisible((v) => !v)}
-          className="absolute right-1.5 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-md text-muted hover:bg-slate-100 hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="absolute right-1.5 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-md text-muted hover:bg-zinc-100 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           aria-label={visible ? 'Hide password' : 'Show password'}
           aria-pressed={visible}
         >

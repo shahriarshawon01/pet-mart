@@ -27,13 +27,13 @@ export default function SafetyTips() {
         </div>
 
         <div className="bg-white rounded-2xl border border-border p-6 sm:p-8 space-y-6 shadow-xs">
-          <h2 className="text-xl font-bold text-navy">Buyer Safety Checklist</h2>
+          <h2 className="text-xl font-bold text-ink">Buyer Safety Checklist</h2>
 
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <CheckCircle size={20} className="text-primary shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-semibold text-navy text-sm">Always Meet in a Safe, Public Location</h4>
+                <h4 className="font-semibold text-ink text-sm">Always Meet in a Safe, Public Location</h4>
                 <p className="text-muted text-xs sm:text-sm mt-0.5">
                   Visit the breeder's facility or home, or arrange meetings in busy daylit public areas. Check the living conditions of the mother animal when purchasing puppies or kittens.
                 </p>
@@ -43,7 +43,7 @@ export default function SafetyTips() {
             <div className="flex items-start gap-3">
               <CheckCircle size={20} className="text-primary shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-semibold text-navy text-sm">Verify Vaccination Card with a Registered Veterinarian</h4>
+                <h4 className="font-semibold text-ink text-sm">Verify Vaccination Card with a Registered Veterinarian</h4>
                 <p className="text-muted text-xs sm:text-sm mt-0.5">
                   Request the original vaccination booklet stamped and signed by a licensed veterinarian. Never accept photocopies or verbal assurances.
                 </p>
@@ -53,7 +53,7 @@ export default function SafetyTips() {
             <div className="flex items-start gap-3">
               <CheckCircle size={20} className="text-primary shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-semibold text-navy text-sm">Look for Verified Seller Badges</h4>
+                <h4 className="font-semibold text-ink text-sm">Look for Verified Seller Badges</h4>
                 <p className="text-muted text-xs sm:text-sm mt-0.5">
                   Sellers with our green Verified badge have had their government NID and physical location verified by our moderation team.
                 </p>

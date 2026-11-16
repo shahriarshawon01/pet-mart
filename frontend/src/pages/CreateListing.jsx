@@ -57,13 +57,13 @@ function Stepper({ step }) {
           <li key={label} className="flex flex-1 items-center gap-1.5 sm:gap-2" aria-current={current ? 'step' : undefined}>
             <span
               className={`grid h-8 w-8 shrink-0 place-items-center rounded-full text-xs font-bold transition ${
-                done ? 'bg-primary text-white' : current ? 'bg-navy text-white' : 'bg-slate-200 text-slate-500'
+                done ? 'bg-primary text-white' : current ? 'bg-ink text-white' : 'bg-zinc-200 text-zinc-500'
               }`}
             >
               {done ? <Check size={15} aria-hidden="true" /> : i + 1}
             </span>
-            <span className={`hidden text-xs font-semibold md:inline ${current ? 'text-navy' : 'text-muted'}`}>{label}</span>
-            {i < STEPS.length - 1 && <span className={`h-0.5 flex-1 rounded ${done ? 'bg-primary' : 'bg-slate-200'}`} aria-hidden="true" />}
+            <span className={`hidden text-xs font-semibold md:inline ${current ? 'text-ink' : 'text-muted'}`}>{label}</span>
+            {i < STEPS.length - 1 && <span className={`h-0.5 flex-1 rounded ${done ? 'bg-primary' : 'bg-zinc-200'}`} aria-hidden="true" />}
           </li>
         );
       })}
@@ -259,10 +259,10 @@ export default function CreateListing() {
     return (
       <Container className="py-12 sm:py-20">
         <div className="mx-auto max-w-lg rounded-3xl border border-border bg-white p-8 text-center shadow-sm sm:p-10">
-          <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-primary/10 text-primary-hover">
+          <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-primary/10 text-primary">
             <CheckCircle2 size={34} aria-hidden="true" />
           </span>
-          <h1 className="mt-5 text-2xl font-extrabold text-navy">Submitted for review</h1>
+          <h1 className="mt-5 text-2xl font-extrabold text-ink">Submitted for review</h1>
           <p className="mt-2 text-sm text-muted">
             Our moderators will check your listing. You'll see it go live in My Listings once it's approved.
           </p>
@@ -293,7 +293,7 @@ export default function CreateListing() {
     <Container className="py-6 sm:py-10">
       <div className="mx-auto max-w-3xl">
         <div className="mb-6">
-          <h1 className="text-2xl font-extrabold tracking-tight text-navy sm:text-3xl">Post a listing</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">Post a listing</h1>
           <p className="mt-1 text-sm text-muted">It's free. Our moderators review every listing before it goes live.</p>
         </div>
 
@@ -309,7 +309,7 @@ export default function CreateListing() {
           {step === 0 && (
             <div className="space-y-8">
               <fieldset id="category-group" tabIndex={-1} className="scroll-mt-28 focus:outline-none">
-                <legend className="mb-3 text-base font-bold text-navy">
+                <legend className="mb-3 text-base font-bold text-ink">
                   What are you listing? <span className="text-red-500">*</span>
                 </legend>
                 {catalogLoading ? (
@@ -327,7 +327,7 @@ export default function CreateListing() {
                         <label
                           key={c.id}
                           className={`flex cursor-pointer flex-col items-center gap-2 rounded-xl border-2 p-4 text-center transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary ${
-                            active ? 'border-primary bg-primary/5' : 'border-border hover:border-slate-300'
+                            active ? 'border-primary bg-primary/5' : 'border-border hover:border-zinc-300'
                           }`}
                         >
                           <input
@@ -337,8 +337,8 @@ export default function CreateListing() {
                             checked={active}
                             onChange={() => set({ category_id: c.id, attributes: {} })}
                           />
-                          <Icon size={26} className={active ? 'text-primary-hover' : 'text-slate-500'} aria-hidden="true" />
-                          <span className="text-sm font-semibold text-navy">{c.name}</span>
+                          <Icon size={26} className={active ? 'text-primary' : 'text-zinc-500'} aria-hidden="true" />
+                          <span className="text-sm font-semibold text-ink">{c.name}</span>
                         </label>
                       );
                     })}
@@ -352,7 +352,7 @@ export default function CreateListing() {
               </fieldset>
 
               <fieldset id="type-group" tabIndex={-1} className="focus:outline-none">
-                <legend className="mb-3 text-base font-bold text-navy">Listing type</legend>
+                <legend className="mb-3 text-base font-bold text-ink">Listing type</legend>
                 <div className="flex flex-wrap gap-2">
                   {LISTING_TYPES.map((t) => {
                     const active = data.listing_type === t.value;
@@ -360,7 +360,7 @@ export default function CreateListing() {
                       <label
                         key={t.value}
                         className={`cursor-pointer rounded-full border px-4 py-2 text-sm font-semibold transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary ${
-                          active ? 'border-navy bg-navy text-white' : 'border-border text-slate-700 hover:border-slate-400'
+                          active ? 'border-ink bg-ink text-white' : 'border-border text-zinc-700 hover:border-zinc-400'
                         }`}
                       >
                         <input
@@ -447,7 +447,7 @@ export default function CreateListing() {
 
               {attributeDefs.length > 0 && (
                 <fieldset className="rounded-xl border border-primary/30 bg-primary/5 p-4 sm:p-5">
-                  <legend className="px-1 text-sm font-bold text-primary-hover">{selected?.name} details</legend>
+                  <legend className="px-1 text-sm font-bold text-primary">{selected?.name} details</legend>
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     {attributeDefs.map((a) => {
                       const id = `attr-${a.attribute_key}`;
@@ -514,7 +514,7 @@ export default function CreateListing() {
           {step === 2 && (
             <div className="space-y-5">
               <LocationSearch index={locIndex} onPick={pickLocation} />
-              <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-zinc-400">
                 <span className="h-px flex-1 bg-border" />
                 or choose step by step
                 <span className="h-px flex-1 bg-border" />
@@ -585,8 +585,8 @@ export default function CreateListing() {
                   <p className="text-xs font-semibold uppercase tracking-wide text-muted">
                     {selected?.name} · {type?.label}
                   </p>
-                  <h2 className="mt-1 text-xl font-extrabold text-navy">{data.title}</h2>
-                  <p className="mt-2 text-2xl font-extrabold text-primary-hover">
+                  <h2 className="mt-1 text-xl font-extrabold text-ink">{data.title}</h2>
+                  <p className="mt-2 text-2xl font-extrabold tracking-tight text-ink">
                     {formatPrice(data.is_free ? 0 : data.price, { isFree: data.is_free })}
                     {data.is_negotiable && !data.is_free && data.price ? (
                       <span className="ml-2 text-sm font-semibold text-muted">Negotiable</span>
@@ -600,7 +600,7 @@ export default function CreateListing() {
                 </div>
               </div>
 
-              <dl className="grid grid-cols-1 gap-x-6 gap-y-3 rounded-xl bg-slate-50 p-4 text-sm sm:grid-cols-2">
+              <dl className="grid grid-cols-1 gap-x-6 gap-y-3 rounded-xl bg-zinc-50 p-4 text-sm sm:grid-cols-2">
                 {[
                   ['Condition', CONDITIONS.find((c) => c.value === data.condition)?.label],
                   ['Photos', `${readyPhotos.length}`],
@@ -610,14 +610,14 @@ export default function CreateListing() {
                   .map(([k, v]) => (
                     <div key={k} className="flex justify-between gap-3">
                       <dt className="text-muted">{k}</dt>
-                      <dd className="text-right font-semibold text-navy">{v}</dd>
+                      <dd className="text-right font-semibold text-ink">{v}</dd>
                     </div>
                   ))}
               </dl>
 
               <div>
-                <h3 className="mb-1 text-sm font-bold text-navy">Description</h3>
-                <p className="whitespace-pre-line break-words text-sm text-slate-700">{data.description}</p>
+                <h3 className="mb-1 text-sm font-bold text-ink">Description</h3>
+                <p className="whitespace-pre-line break-words text-sm text-zinc-700">{data.description}</p>
               </div>
 
               <div className="flex flex-wrap gap-2 text-xs">
@@ -626,7 +626,7 @@ export default function CreateListing() {
                     key={label}
                     type="button"
                     onClick={() => setStep(i)}
-                    className="rounded-full border border-border px-3 py-1 font-semibold text-slate-600 hover:border-primary hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="rounded-full border border-border px-3 py-1 font-semibold text-zinc-600 hover:border-primary hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   >
                     Edit {label.toLowerCase()}
                   </button>

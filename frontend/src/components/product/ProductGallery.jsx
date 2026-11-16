@@ -43,14 +43,14 @@ export function ProductGallery({ images = [], title }) {
 
   return (
     <div className="overflow-hidden rounded-2xl border border-border bg-white">
-      <div className="relative bg-slate-900" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+      <div className="relative bg-zinc-900" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <ImageWithFallback
           key={current?.id}
           src={current?.image_path}
           alt={`${title} – photo ${index + 1} of ${count}`}
           aspectRatio="aspect-[4/3] sm:aspect-[16/10]"
           objectFit="object-contain"
-          className="bg-slate-900"
+          className="bg-zinc-900"
         />
         {hasImage && (
           <button
@@ -67,7 +67,7 @@ export function ProductGallery({ images = [], title }) {
               type="button"
               onClick={() => go(-1)}
               aria-label="Previous photo"
-              className="absolute left-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-navy shadow hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="absolute left-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink shadow hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <ChevronLeft size={20} />
             </button>
@@ -75,7 +75,7 @@ export function ProductGallery({ images = [], title }) {
               type="button"
               onClick={() => go(1)}
               aria-label="Next photo"
-              className="absolute right-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-navy shadow hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="absolute right-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink shadow hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <ChevronRight size={20} />
             </button>
@@ -87,7 +87,7 @@ export function ProductGallery({ images = [], title }) {
       </div>
 
       {count > 1 && (
-        <div className="flex gap-2 overflow-x-auto bg-slate-50 p-3" role="list" aria-label="Photo thumbnails">
+        <div className="flex gap-2 overflow-x-auto bg-zinc-50 p-3" role="list" aria-label="Photo thumbnails">
           {list.map((img, i) => (
             <button
               key={img.id}

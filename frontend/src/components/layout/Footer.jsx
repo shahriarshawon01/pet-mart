@@ -23,7 +23,7 @@ export function Footer() {
   const copyright = setting(settings, 'footer_copyright', 'PetMart Bangladesh');
 
   return (
-    <footer className="bg-navy text-slate-300 mt-auto border-t border-slate-800">
+    <footer className="bg-ink text-zinc-300 mt-auto border-t border-zinc-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Responsive Grid: 1 col mobile, 2 col tablet, 4 col desktop */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -37,7 +37,7 @@ export function Footer() {
                 Pet<span className="text-primary">Mart</span> BD
               </span>
             </Link>
-            <p className="whitespace-pre-line text-sm leading-relaxed text-slate-400">{about}</p>
+            <p className="whitespace-pre-line text-sm leading-relaxed text-zinc-400">{about}</p>
             <div className="flex items-center gap-2 text-xs text-primary font-medium">
               <CheckCircle2 size={16} />
               <span>Admin-moderated for animal safety</span>
@@ -133,13 +133,13 @@ export function Footer() {
             {(phone || email || facebook) && (
               <div className="space-y-3 text-sm">
                 {phone && (
-                  <a href={telHref(phone)} className="flex items-center gap-2.5 text-slate-300 transition-colors hover:text-primary">
+                  <a href={telHref(phone)} className="flex items-center gap-2.5 text-zinc-300 transition-colors hover:text-primary">
                     <Phone size={16} className="shrink-0 text-primary" aria-hidden="true" />
                     <span>{phone}</span>
                   </a>
                 )}
                 {email && (
-                  <a href={`mailto:${email}`} className="flex items-center gap-2.5 break-all text-slate-300 transition-colors hover:text-primary">
+                  <a href={`mailto:${email}`} className="flex items-center gap-2.5 break-all text-zinc-300 transition-colors hover:text-primary">
                     <Mail size={16} className="shrink-0 text-primary" aria-hidden="true" />
                     <span>{email}</span>
                   </a>
@@ -149,7 +149,7 @@ export function Footer() {
                     href={facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 text-slate-300 transition-colors hover:text-primary"
+                    className="flex items-center gap-2.5 text-zinc-300 transition-colors hover:text-primary"
                   >
                     <Facebook size={16} className="shrink-0 text-primary" aria-hidden="true" />
                     <span>Facebook</span>
@@ -158,7 +158,7 @@ export function Footer() {
               </div>
             )}
             {(noticeTitle || noticeText) && (
-              <div className="rounded-xl border border-slate-700/60 bg-slate-800/80 p-3 text-xs text-slate-300">
+              <div className="rounded-xl border border-zinc-700/60 bg-zinc-800/80 p-3 text-xs text-zinc-300">
                 {noticeTitle && (
                   <div className="mb-1 flex items-center gap-2 font-semibold text-white">
                     <Shield size={16} className="text-primary" aria-hidden="true" />
@@ -172,12 +172,12 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="mt-12 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400">
           <p>© {new Date().getFullYear()} {copyright}. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <Link to="/safety" className="hover:text-slate-200 transition-colors">Safety</Link>
-            <Link to="/terms" className="hover:text-slate-200 transition-colors">Terms</Link>
-            <Link to="/privacy" className="hover:text-slate-200 transition-colors">Privacy</Link>
+            <Link to="/safety" className="hover:text-zinc-200 transition-colors">Safety</Link>
+            <Link to="/terms" className="hover:text-zinc-200 transition-colors">Terms</Link>
+            <Link to="/privacy" className="hover:text-zinc-200 transition-colors">Privacy</Link>
           </div>
         </div>
       </div>

@@ -31,7 +31,7 @@ function StatCard({ icon: Icon, label, value, tone }) {
         </span>
         {label}
       </div>
-      <p className="mt-2 text-2xl font-extrabold text-navy">{value}</p>
+      <p className="mt-2 text-2xl font-extrabold text-ink">{value}</p>
     </div>
   );
 }
@@ -95,7 +95,7 @@ export default function SellerDashboard() {
       <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5">
         <StatCard icon={BadgeCheck} label="Live" value={counts.active} tone="bg-emerald-100 text-emerald-700" />
         <StatCard icon={Clock} label="Pending" value={counts.pending} tone="bg-amber-100 text-amber-700" />
-        <StatCard icon={CheckCircle2} label="Sold" value={counts.sold} tone="bg-slate-100 text-slate-700" />
+        <StatCard icon={CheckCircle2} label="Sold" value={counts.sold} tone="bg-zinc-100 text-zinc-700" />
         <StatCard icon={XCircle} label="Rejected" value={counts.rejected} tone="bg-red-100 text-red-700" />
         <StatCard icon={BarChart3} label="Total views" value={counts.views.toLocaleString('en-IN')} tone="bg-blue-100 text-blue-700" />
       </div>
@@ -110,11 +110,11 @@ export default function SellerDashboard() {
               aria-selected={tab === t.value}
               onClick={() => setTab(t.value)}
               className={`-mb-px shrink-0 border-b-2 px-3 py-2.5 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary ${
-                tab === t.value ? 'border-primary text-primary-hover' : 'border-transparent text-muted hover:text-navy'
+                tab === t.value ? 'border-primary text-primary' : 'border-transparent text-muted hover:text-ink'
               }`}
             >
               {t.label}
-              <span className="ml-1.5 rounded-full bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-600">{counts[t.value]}</span>
+              <span className="ml-1.5 rounded-full bg-zinc-100 px-1.5 py-0.5 text-[11px] text-zinc-600">{counts[t.value]}</span>
             </button>
           ))}
         </div>
@@ -151,8 +151,8 @@ export default function SellerDashboard() {
                         <Badge color={badge.color}>{badge.label}</Badge>
                         <span className="text-xs text-muted">{item.category?.name}</span>
                       </div>
-                      <h3 className="mt-1 line-clamp-2 font-bold text-navy">{item.title}</h3>
-                      <p className="mt-0.5 text-sm font-bold text-primary-hover">
+                      <h3 className="mt-1 line-clamp-2 font-bold text-ink">{item.title}</h3>
+                      <p className="mt-0.5 text-sm font-bold text-ink">
                         {formatPrice(item.price, { isFree: item.is_free })}
                       </p>
                       <p className="mt-0.5 flex items-center gap-3 text-xs text-muted">

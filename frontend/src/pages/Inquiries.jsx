@@ -53,14 +53,14 @@ function Conversation({ convo, onReplied, onRead }) {
       className={`overflow-hidden rounded-2xl border bg-white ${convo.unread ? 'border-primary/40 ring-1 ring-primary/20' : 'border-border'}`}
       aria-label={`Conversation with ${convo.otherName} about ${convo.title}`}
     >
-      <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-slate-50 px-4 py-3">
+      <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-zinc-50 px-4 py-3">
         <div className="min-w-0">
           {convo.productSlug ? (
-            <Link to={`/product/${convo.productSlug}`} className="truncate font-bold text-navy hover:text-primary-hover hover:underline">
+            <Link to={`/product/${convo.productSlug}`} className="truncate font-bold text-ink hover:text-primary-hover hover:underline">
               {convo.title}
             </Link>
           ) : (
-            <span className="font-bold text-navy">{convo.title}</span>
+            <span className="font-bold text-ink">{convo.title}</span>
           )}
           <p className="text-xs text-muted">
             With {convo.otherName} · {convo.messages.length} message{convo.messages.length !== 1 ? 's' : ''} · last{' '}
@@ -82,7 +82,7 @@ function Conversation({ convo, onReplied, onRead }) {
           <li key={m.id} className={`flex gap-3 ${m.is_mine ? 'flex-row-reverse' : ''}`}>
             <span
               className={`grid h-8 w-8 shrink-0 place-items-center rounded-full text-xs font-bold ${
-                m.is_mine ? 'bg-primary text-white' : 'bg-slate-200 text-slate-700'
+                m.is_mine ? 'bg-primary text-white' : 'bg-zinc-200 text-zinc-700'
               }`}
               aria-hidden="true"
             >
@@ -98,7 +98,7 @@ function Conversation({ convo, onReplied, onRead }) {
               </p>
               <p
                 className={`inline-block whitespace-pre-line break-words rounded-2xl px-4 py-2.5 text-left text-sm ${
-                  m.is_mine ? 'rounded-tr-sm bg-primary/10 text-navy' : 'rounded-tl-sm bg-slate-100 text-slate-800'
+                  m.is_mine ? 'rounded-tr-sm bg-primary/10 text-ink' : 'rounded-tl-sm bg-zinc-100 text-zinc-800'
                 } ${!m.is_read && !m.is_mine ? 'font-semibold' : ''}`}
               >
                 {m.message}
@@ -126,7 +126,7 @@ function Conversation({ convo, onReplied, onRead }) {
               if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) send(e);
             }}
             placeholder={`Reply to ${convo.otherName}…`}
-            className="min-h-[42px] flex-1 resize-y rounded-lg border border-border bg-white px-3 py-2.5 text-sm text-navy outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+            className="min-h-[42px] flex-1 resize-y rounded-lg border border-border bg-white px-3 py-2.5 text-sm text-ink outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
           />
           <Button type="submit" loading={sending} iconLeft={<Send size={16} />}>
             Send

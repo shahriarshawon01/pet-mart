@@ -76,13 +76,13 @@ export default function Contact() {
         {/* Contact Information */}
         <div className="md:col-span-1 space-y-4">
           <div className="bg-white p-5 rounded-2xl border border-border shadow-xs space-y-4">
-            <h3 className="font-bold text-navy text-base">Direct Channels</h3>
+            <h3 className="font-bold text-ink text-base">Direct Channels</h3>
             
             {phone && (
               <div className="flex items-start gap-3 text-sm">
                 <Phone size={18} className="text-primary mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-medium text-navy">Hotline</p>
+                  <p className="font-medium text-ink">Hotline</p>
                   <a href={`tel:${String(phone).replace(/[^\d+]/g, '')}`} className="text-muted hover:text-primary-hover">
                     {phone}
                   </a>
@@ -94,7 +94,7 @@ export default function Contact() {
               <div className="flex items-start gap-3 text-sm">
                 <Mail size={18} className="text-primary mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-medium text-navy">Email Support</p>
+                  <p className="font-medium text-ink">Email Support</p>
                   <a href={`mailto:${email}`} className="break-all text-muted hover:text-primary-hover">
                     {email}
                   </a>
@@ -105,7 +105,7 @@ export default function Contact() {
             <div className="flex items-start gap-3 text-sm">
               <MapPin size={18} className="text-primary mt-0.5 shrink-0" />
               <div>
-                <p className="font-medium text-navy">Office</p>
+                <p className="font-medium text-ink">Office</p>
                 <p className="text-muted">Banani, Dhaka, Bangladesh</p>
               </div>
             </div>
@@ -115,7 +115,7 @@ export default function Contact() {
         {/* Message Form */}
         <div className="md:col-span-2">
           <form onSubmit={handleSubmit} noValidate className="bg-white p-6 sm:p-8 rounded-2xl border border-border shadow-xs space-y-5">
-            <h3 className="font-bold text-navy text-lg">Send Us a Message</h3>
+            <h3 className="font-bold text-ink text-lg">Send Us a Message</h3>
             <Input
               id="contact-name"
               label="Your Name"

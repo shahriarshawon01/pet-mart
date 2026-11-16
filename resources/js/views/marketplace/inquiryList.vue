@@ -169,7 +169,7 @@
                                         </span>
                                     </div>
                                     <div v-if="editingId === item.m.id" class="pm-msg-edit">
-                                        <textarea v-model="editText" class="form-control" rows="3" maxlength="1000" aria-label="Edit message" @keydown.esc="cancelEdit"></textarea>
+                                        <textarea v-model="editText" class="form-control" rows="3" placeholder="Edit the message text" maxlength="1000" aria-label="Edit message" @keydown.esc="cancelEdit"></textarea>
                                         <div class="d-flex justify-content-between align-items-center mt-1">
                                             <small class="text-muted">{{ editText.length }}/1000 · both users will see “Edited by PetMart”</small>
                                             <span>

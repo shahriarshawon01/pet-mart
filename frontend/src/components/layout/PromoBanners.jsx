@@ -82,7 +82,7 @@ export function PromoBanners({ position, className = '', wrap = true }) {
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <div className="relative aspect-[16/7] overflow-hidden rounded-2xl bg-slate-100 shadow-sm sm:aspect-[16/5]">
+      <div className="relative aspect-[16/7] overflow-hidden rounded-2xl bg-zinc-100 shadow-sm sm:aspect-[16/5]">
         {banners.map((b, i) => (
           <div
             key={b.id}
@@ -93,7 +93,7 @@ export function PromoBanners({ position, className = '', wrap = true }) {
             aria-label={count > 1 ? `${i + 1} of ${count}` : undefined}
           >
             <BannerLink banner={b}>
-              {!loaded[b.id] && <div className="absolute inset-0 animate-pulse bg-slate-200" aria-hidden="true" />}
+              {!loaded[b.id] && <div className="absolute inset-0 animate-pulse bg-zinc-200" aria-hidden="true" />}
               <img
                 src={b.image}
                 alt={b.title}
@@ -110,7 +110,7 @@ export function PromoBanners({ position, className = '', wrap = true }) {
             <button
               type="button"
               onClick={() => go(index - 1)}
-              className="absolute left-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/85 text-navy shadow-md backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="absolute left-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/85 text-ink shadow-md backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               aria-label="Previous promotion"
             >
               <ChevronLeft size={18} aria-hidden="true" />
@@ -118,12 +118,12 @@ export function PromoBanners({ position, className = '', wrap = true }) {
             <button
               type="button"
               onClick={() => go(index + 1)}
-              className="absolute right-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/85 text-navy shadow-md backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="absolute right-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/85 text-ink shadow-md backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               aria-label="Next promotion"
             >
               <ChevronRight size={18} aria-hidden="true" />
             </button>
-            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5 rounded-full bg-navy/40 px-2 py-1.5 backdrop-blur">
+            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5 rounded-full bg-ink/40 px-2 py-1.5 backdrop-blur">
               {banners.map((b, i) => (
                 <button
                   key={b.id}

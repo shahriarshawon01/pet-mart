@@ -34,12 +34,12 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="p-name">Name <span class="req">*</span></label>
-                            <input id="p-name" v-model="form.name" class="form-control" maxlength="100" autocomplete="name" :class="{ 'is-invalid': errors.name }">
+                            <input id="p-name" v-model="form.name" class="form-control" placeholder="Your full name" maxlength="100" autocomplete="name" :class="{ 'is-invalid': errors.name }">
                             <span v-if="errors.name" class="error_message">{{ errors.name }}</span>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="p-email">Email <span class="req">*</span></label>
-                            <input id="p-email" v-model="form.email" type="email" class="form-control" maxlength="150" autocomplete="email" :class="{ 'is-invalid': errors.email }">
+                            <input id="p-email" v-model="form.email" type="email" class="form-control" placeholder="name@example.com" maxlength="150" autocomplete="email" :class="{ 'is-invalid': errors.email }">
                             <span v-if="errors.email" class="error_message">{{ errors.email }}</span>
                             <div class="form-text">You use this email to log in to the admin panel.</div>
                         </div>
@@ -49,18 +49,18 @@
                     <div class="pm-card-body row g-3">
                         <div class="col-md-4">
                             <label class="form-label" for="p-current">Current password</label>
-                            <input id="p-current" v-model="form.current_password" type="password" class="form-control" autocomplete="current-password" :class="{ 'is-invalid': errors.current_password }">
+                            <input id="p-current" v-model="form.current_password" type="password" class="form-control" placeholder="Enter your current password" autocomplete="current-password" :class="{ 'is-invalid': errors.current_password }">
                             <span v-if="errors.current_password" class="error_message">{{ errors.current_password }}</span>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label" for="p-new">New password</label>
-                            <input id="p-new" v-model="form.password" type="password" class="form-control" autocomplete="new-password" :class="{ 'is-invalid': errors.password }">
+                            <input id="p-new" v-model="form.password" type="password" class="form-control" placeholder="At least 8 characters" autocomplete="new-password" :class="{ 'is-invalid': errors.password }">
                             <span v-if="errors.password" class="error_message">{{ errors.password }}</span>
                             <div class="form-text">At least 8 characters.</div>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label" for="p-confirm">Confirm new password</label>
-                            <input id="p-confirm" v-model="form.password_confirmation" type="password" class="form-control" autocomplete="new-password">
+                            <input id="p-confirm" v-model="form.password_confirmation" type="password" class="form-control" placeholder="Re-enter the new password" autocomplete="new-password">
                         </div>
                     </div>
 

@@ -47,20 +47,20 @@ export function FilterDrawer({ isOpen, onClose, onApply, onReset, children, acti
 
   return createPortal(
     <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-labelledby="filter-drawer-title" data-lenis-prevent>
-      <div className="absolute inset-0 bg-navy/50 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
+      <div className="absolute inset-0 bg-ink/50 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
       <div
         ref={panelRef}
         className="absolute inset-x-0 bottom-0 flex max-h-[88vh] flex-col rounded-t-3xl bg-white shadow-2xl sm:inset-y-0 sm:left-auto sm:right-0 sm:max-h-none sm:w-100 sm:rounded-none"
       >
         <div className="flex items-center justify-between border-b border-border px-5 py-4">
-          <h2 id="filter-drawer-title" className="text-lg font-bold text-navy">
-            Filters {activeCount > 0 && <span className="text-primary-hover">({activeCount})</span>}
+          <h2 id="filter-drawer-title" className="text-lg font-bold text-ink">
+            Filters {activeCount > 0 && <span className="text-primary">({activeCount})</span>}
           </h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close filters"
-            className="rounded-lg p-2 text-muted hover:bg-slate-100 hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="rounded-lg p-2 text-muted hover:bg-zinc-100 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             <X size={20} />
           </button>

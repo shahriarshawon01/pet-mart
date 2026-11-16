@@ -311,7 +311,7 @@ export default {
 .loc-list { list-style: none; margin: 0; padding: 6px; overflow-y: auto; flex: 1; }
 .loc-item { display: flex; align-items: center; gap: 4px; border-radius: 10px; transition: background 0.12s; }
 .loc-item:hover { background: var(--pm-bg); }
-.loc-item.is-selected { background: var(--pm-emerald-50); box-shadow: inset 3px 0 0 var(--pm-emerald); }
+.loc-item.is-selected { background: var(--pm-brand-50); box-shadow: inset 3px 0 0 var(--pm-brand); }
 .loc-item.is-hidden .loc-name { color: var(--pm-muted); text-decoration: line-through; }
 .loc-main { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 10px; border: 0; background: transparent; text-align: left; }
 .loc-main:disabled { cursor: default; color: inherit; }

@@ -62,7 +62,7 @@ export function Modal({ isOpen, onClose, title, description, children, footer, m
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4" data-lenis-prevent>
-      <div className="absolute inset-0 bg-navy/60 backdrop-blur-sm" onClick={() => onCloseRef.current?.()} aria-hidden="true" />
+      <div className="absolute inset-0 bg-ink/60 backdrop-blur-sm" onClick={() => onCloseRef.current?.()} aria-hidden="true" />
       <div
         ref={panelRef}
         role="dialog"
@@ -73,7 +73,7 @@ export function Modal({ isOpen, onClose, title, description, children, footer, m
         <div className="flex items-start justify-between gap-4 border-b border-border px-5 py-4">
           <div>
             {title && (
-              <h2 id={titleId} className="text-lg font-bold text-navy">
+              <h2 id={titleId} className="text-lg font-bold text-ink">
                 {title}
               </h2>
             )}
@@ -82,7 +82,7 @@ export function Modal({ isOpen, onClose, title, description, children, footer, m
           <button
             type="button"
             onClick={() => onCloseRef.current?.()}
-            className="-mr-1 rounded-lg p-1.5 text-muted transition-colors hover:bg-slate-100 hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="-mr-1 rounded-lg p-1.5 text-muted transition-colors hover:bg-zinc-100 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             aria-label="Close dialog"
           >
             <X size={20} />

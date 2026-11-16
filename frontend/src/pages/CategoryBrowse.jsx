@@ -190,7 +190,7 @@ export default function CategoryBrowse() {
               ...(activeCategory ? [{ label: activeCategory.name }] : []),
             ]}
           />
-          <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-navy sm:text-3xl">{pageTitle}</h1>
+          <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{pageTitle}</h1>
           <p className="mt-1 text-sm text-muted">
             {activeCategory?.description || 'Pets, adoption posts and supplies from sellers across Bangladesh.'}
           </p>
@@ -213,7 +213,7 @@ export default function CategoryBrowse() {
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
               placeholder="Search breeds, items, keywords…"
-              className="w-full rounded-xl border border-border bg-slate-50 py-3 pl-11 pr-4 text-sm text-navy outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20"
+              className="w-full rounded-xl border border-border bg-zinc-50 py-3 pl-11 pr-4 text-sm text-ink outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20"
             />
           </form>
         </Container>
@@ -226,14 +226,14 @@ export default function CategoryBrowse() {
           <aside className="hidden lg:block" aria-label="Filters">
             <div className="sticky top-24 rounded-2xl border border-border bg-white p-5 shadow-sm">
               <div className="mb-5 flex items-center justify-between">
-                <h2 className="flex items-center gap-2 text-base font-bold text-navy">
+                <h2 className="flex items-center gap-2 text-base font-bold text-ink">
                   <SlidersHorizontal size={17} aria-hidden="true" /> Filters
                 </h2>
                 {filterCount > 0 && (
                   <button
                     type="button"
                     onClick={clearAll}
-                    className="flex items-center gap-1 rounded text-xs font-semibold text-primary-hover hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="flex items-center gap-1 rounded text-xs font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   >
                     <RotateCcw size={13} aria-hidden="true" /> Reset
                   </button>
@@ -256,7 +256,7 @@ export default function CategoryBrowse() {
                   'Loading listings…'
                 ) : (
                   <>
-                    <span className="font-bold text-navy">{total.toLocaleString('en-IN')}</span>{' '}
+                    <span className="font-bold text-ink">{total.toLocaleString('en-IN')}</span>{' '}
                     {total === 1 ? 'listing' : 'listings'} found
                   </>
                 )}
@@ -284,7 +284,7 @@ export default function CategoryBrowse() {
                       aria-label={label}
                       aria-pressed={view === v}
                       className={`p-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary ${
-                        view === v ? 'bg-navy text-white' : 'bg-white text-muted hover:text-navy'
+                        view === v ? 'bg-ink text-white' : 'bg-white text-muted hover:text-ink'
                       }`}
                     >
                       <Icon size={16} />

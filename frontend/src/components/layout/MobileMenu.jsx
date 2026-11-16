@@ -55,7 +55,7 @@ export function MobileMenu({ isOpen, onClose, searchQuery, setSearchQuery, onSea
     <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation menu" data-lenis-prevent>
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-navy/60 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-ink/60 backdrop-blur-xs transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -69,11 +69,11 @@ export function MobileMenu({ isOpen, onClose, searchQuery, setSearchQuery, onSea
         <div className="flex items-center justify-between px-5 py-4 border-b border-border">
           <Link to="/" className="flex items-center gap-2.5 text-xl font-extrabold" onClick={onClose} aria-label="PetMart home">
             <img src="/brand/seba-dut-logo.jpg" alt="" width="36" height="36" className="h-9 w-9 rounded-xl object-cover" />
-            <span className="text-navy">Pet<span className="text-primary">Mart</span></span>
+            <span className="text-ink">Pet<span className="text-primary">Mart</span></span>
           </Link>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg text-muted hover:text-navy hover:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="p-2 rounded-lg text-muted hover:text-ink hover:bg-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             aria-label="Close menu"
           >
             <X size={22} />
@@ -89,17 +89,17 @@ export function MobileMenu({ isOpen, onClose, searchQuery, setSearchQuery, onSea
               placeholder="Search pets, supplies..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 border border-border rounded-lg outline-none focus:border-primary focus:bg-white text-navy placeholder-muted"
+              className="w-full pl-9 pr-3 py-2 text-sm bg-zinc-50 border border-border rounded-lg outline-none focus:border-primary focus:bg-white text-ink placeholder-muted"
             />
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
           </form>
 
           {/* User Info if logged in */}
           {user && (
-            <div className="p-3 bg-slate-50 rounded-xl border border-border flex items-center gap-3">
+            <div className="p-3 bg-zinc-50 rounded-xl border border-border flex items-center gap-3">
               <UserAvatar user={user} />
               <div className="overflow-hidden">
-                <p className="text-sm font-bold text-navy truncate">{user.name}</p>
+                <p className="text-sm font-bold text-ink truncate">{user.name}</p>
                 <p className="text-xs text-muted truncate">{user.phone}</p>
               </div>
             </div>
@@ -109,7 +109,7 @@ export function MobileMenu({ isOpen, onClose, searchQuery, setSearchQuery, onSea
           <nav className="space-y-1" aria-label="Mobile Navigation">
             <Link
               to="/"
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-navy hover:bg-slate-50 hover:text-primary transition-colors"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-ink hover:bg-zinc-50 hover:text-primary transition-colors"
             >
               <Home size={18} className="text-muted" />
               <span>Home</span>
@@ -117,7 +117,7 @@ export function MobileMenu({ isOpen, onClose, searchQuery, setSearchQuery, onSea
 
             <Link
               to="/browse"
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-navy hover:bg-slate-50 hover:text-primary transition-colors"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-ink hover:bg-zinc-50 hover:text-primary transition-colors"
             >
               <Grid size={18} className="text-muted" />
               <span>Browse All Categories</span>
@@ -127,7 +127,7 @@ export function MobileMenu({ isOpen, onClose, searchQuery, setSearchQuery, onSea
               <>
                 <Link
                   to="/dashboard"
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-navy hover:bg-slate-50 hover:text-primary transition-colors"
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-ink hover:bg-zinc-50 hover:text-primary transition-colors"
                 >
                   <LayoutDashboard size={18} className="text-muted" />
                   <span>My Listings</span>
@@ -135,7 +135,7 @@ export function MobileMenu({ isOpen, onClose, searchQuery, setSearchQuery, onSea
 
                 <Link
                   to="/wishlist"
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-navy hover:bg-slate-50 hover:text-primary transition-colors"
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-ink hover:bg-zinc-50 hover:text-primary transition-colors"
                 >
                   <Heart size={18} className="text-muted" />
                   <span>Saved Listings</span>
@@ -143,7 +143,7 @@ export function MobileMenu({ isOpen, onClose, searchQuery, setSearchQuery, onSea
 
                 <Link
                   to="/inquiries"
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-navy hover:bg-slate-50 hover:text-primary transition-colors"
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-ink hover:bg-zinc-50 hover:text-primary transition-colors"
                 >
                   <MessageSquare size={18} className="text-muted" />
                   <span>Inquiries & Messages</span>
@@ -151,7 +151,7 @@ export function MobileMenu({ isOpen, onClose, searchQuery, setSearchQuery, onSea
 
                 <Link
                   to="/account/settings"
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-navy hover:bg-slate-50 hover:text-primary transition-colors"
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-ink hover:bg-zinc-50 hover:text-primary transition-colors"
                 >
                   <UserCog size={18} className="text-muted" />
                   <span>Profile settings</span>
@@ -175,14 +175,14 @@ export function MobileMenu({ isOpen, onClose, searchQuery, setSearchQuery, onSea
 
           {/* Informational Links */}
           <div className="pt-4 border-t border-border space-y-1 text-xs text-muted">
-            <Link to="/about" className="block py-1.5 hover:text-navy transition-colors">About PetMart</Link>
-            <Link to="/safety" className="block py-1.5 hover:text-navy transition-colors">Safety Tips & Trust</Link>
-            <Link to="/contact" className="block py-1.5 hover:text-navy transition-colors">Contact Support</Link>
+            <Link to="/about" className="block py-1.5 hover:text-ink transition-colors">About PetMart</Link>
+            <Link to="/safety" className="block py-1.5 hover:text-ink transition-colors">Safety Tips & Trust</Link>
+            <Link to="/contact" className="block py-1.5 hover:text-ink transition-colors">Contact Support</Link>
           </div>
         </div>
 
         {/* Footer Actions */}
-        <div className="p-4 border-t border-border bg-slate-50">
+        <div className="p-4 border-t border-border bg-zinc-50">
           {user ? (
             <button
               onClick={handleLogout}
@@ -193,10 +193,10 @@ export function MobileMenu({ isOpen, onClose, searchQuery, setSearchQuery, onSea
             </button>
           ) : (
             <div className="grid grid-cols-2 gap-2">
-              <Button as="link" to="/login" variant="outline" size="sm" className="w-full">
+              <Button as="link" to="/login" variant="outline-primary" size="sm" className="w-full">
                 <LogIn size={15} /> Login
               </Button>
-              <Button as="link" to="/register" variant="primary" size="sm" className="w-full">
+              <Button as="link" to="/register" variant="secondary" size="sm" className="w-full">
                 <UserPlus size={15} /> Register
               </Button>
             </div>

@@ -23,9 +23,9 @@ export function Breadcrumbs({ items = [] }) {
           const isLast = index === items.length - 1;
           return (
             <li key={index} className="flex items-center gap-1.5">
-              <ChevronRight size={12} className="text-slate-400 shrink-0" aria-hidden="true" />
+              <ChevronRight size={12} className="text-zinc-400 shrink-0" aria-hidden="true" />
               {isLast || !item.to ? (
-                <span className="font-semibold text-navy truncate max-w-[180px] sm:max-w-none" aria-current="page">
+                <span className="font-semibold text-ink truncate max-w-[180px] sm:max-w-none" aria-current="page">
                   {item.label}
                 </span>
               ) : (

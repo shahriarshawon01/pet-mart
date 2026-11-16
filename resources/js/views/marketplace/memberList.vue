@@ -18,7 +18,7 @@
                 <stat-card label="Inactive" :value="counts.inactive || 0" icon="fa-solid fa-user-slash" color="var(--pm-c-rose)"></stat-card>
             </div>
             <div class="col-6 col-xl-3">
-                <stat-card label="Verified sellers" :value="counts.verified || 0" icon="fa-solid fa-circle-check" color="var(--pm-c-sky)"></stat-card>
+                <stat-card label="Number verified" :value="counts.verified || 0" icon="fa-solid fa-circle-check" color="var(--pm-c-sky)"></stat-card>
             </div>
         </div>
 
@@ -29,10 +29,10 @@
                     <option value="1">Active</option>
                     <option value="0">Inactive</option>
                 </select>
-                <select v-model="formFilter.is_verified" class="form-select" aria-label="Seller badge" @change="getDataList(1)">
+                <select v-model="formFilter.is_verified" class="form-select" aria-label="Number verification" @change="getDataList(1)">
                     <option value="">Any badge</option>
-                    <option value="1">Verified</option>
-                    <option value="0">Not verified</option>
+                    <option value="1">Number verified</option>
+                    <option value="0">Number not verified</option>
                 </select>
             </template>
 
@@ -45,7 +45,7 @@
                             <div class="min-w-0">
                                 <span class="pm-cell-title">
                                     {{ member.name }}
-                                    <i v-if="member.is_verified" class="fa-solid fa-circle-check text-success" title="Verified seller"></i>
+                                    <i v-if="member.is_verified" class="fa-solid fa-circle-check text-success" title="Number verified"></i>
                                 </span>
                                 <span class="pm-cell-sub">{{ member.email || 'No email' }}</span>
                             </div>
@@ -58,8 +58,8 @@
                     </td>
                     <td class="text-nowrap">{{ dateTime(member.created_at, false) }}</td>
                     <td>
-                        <button type="button" class="btn btn-sm p-0 border-0" :disabled="busyId === member.id" @click="toggleVerification(member)" :title="member.is_verified ? 'Remove seller badge' : 'Give seller badge'">
-                            <span class="pm-badge" :class="member.is_verified ? 'is-info' : 'is-neutral'">{{ member.is_verified ? 'Verified' : 'Not verified' }}</span>
+                        <button type="button" class="btn btn-sm p-0 border-0" :disabled="busyId === member.id" @click="toggleVerification(member)" :title="member.is_verified ? 'Remove number verification' : 'Mark number as verified'">
+                            <span class="pm-badge" :class="member.is_verified ? 'is-info' : 'is-neutral'">{{ member.is_verified ? 'Number verified' : 'Not verified' }}</span>
                         </button>
                     </td>
                     <td>
@@ -111,7 +111,7 @@
                     <div class="me-identity">
                         <h4>
                             {{ form.name || editing.name }}
-                            <i v-if="form.is_verified" class="fa-solid fa-circle-check text-success" title="Verified seller"></i>
+                            <i v-if="form.is_verified" class="fa-solid fa-circle-check text-success" title="Number verified"></i>
                         </h4>
                         <p>{{ editing.phone }}</p>
                         <p>Member since {{ dateTime(editing.created_at, false) }}</p>
@@ -178,8 +178,8 @@
                                 <label class="me-option" :class="{ 'is-on': form.is_verified }" for="m-verified">
                                     <span class="me-option-icon is-sky"><i class="fa-solid fa-circle-check"></i></span>
                                     <span class="flex-grow-1">
-                                        <strong>Verified seller</strong>
-                                        <small>Shows a trust badge on their listings and profile.</small>
+                                        <strong>Number verified</strong>
+                                        <small>Turn on after confirming this mobile number belongs to them. Shows a “Number verified” badge on their listings.</small>
                                     </span>
                                     <span class="form-check form-switch m-0">
                                         <input id="m-verified" class="form-check-input" type="checkbox" v-model="form.is_verified">
@@ -206,7 +206,7 @@ export default {
     components: { DataTable, FormModal, StatCard },
     data() {
         return {
-            tableHeading: ['Member', 'Phone', 'Listings', 'Joined', 'Seller badge', 'Active', 'Actions'],
+            tableHeading: ['Member', 'Phone', 'Listings', 'Joined', 'Number verified', 'Active', 'Actions'],
             busyId: null,
             editingId: null,
             editing: null,
@@ -328,7 +328,7 @@ export default {
     align-items: stretch;
     padding: 20px;
     border-radius: 16px;
-    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
     border: 1px solid var(--pm-border);
     align-self: start;
 }
@@ -340,16 +340,16 @@ export default {
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 0 0 0 4px #fff, 0 0 0 5px var(--pm-border), 0 10px 24px -12px rgba(15, 23, 42, 0.35);
+    box-shadow: 0 0 0 4px #fff, 0 0 0 5px var(--pm-border), 0 10px 24px -12px rgba(9, 9, 11, 0.35);
     transition: box-shadow 0.15s;
 }
-.me-photo:focus-visible, .me-photo.is-drag { outline: none; box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--pm-emerald); }
+.me-photo:focus-visible, .me-photo.is-drag { outline: none; box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--pm-brand); }
 .me-photo.is-busy { cursor: progress; }
 .me-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .me-initials {
     width: 100%; height: 100%; display: grid; place-items: center;
     font-size: 40px; font-weight: 700; color: #fff;
-    background: linear-gradient(135deg, var(--pm-emerald), var(--pm-c-teal));
+    background: linear-gradient(135deg, var(--pm-brand), var(--pm-c-teal));
 }
 .me-initials.tone-1 { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
 .me-initials.tone-2 { background: linear-gradient(135deg, #0ea5e9, #6366f1); }
@@ -359,7 +359,7 @@ export default {
 .me-photo-overlay {
     position: absolute; inset: 0;
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-    background: rgba(15, 23, 42, 0.55); color: #fff; font-size: 12.5px; font-weight: 600;
+    background: rgba(9, 9, 11, 0.55); color: #fff; font-size: 12.5px; font-weight: 600;
     opacity: 0; transition: opacity 0.15s;
 }
 .me-photo-overlay i { font-size: 18px; }
@@ -387,16 +387,16 @@ export default {
     padding: 14px; border-radius: 12px; border: 1px solid var(--pm-border); background: #fff;
     cursor: pointer; margin: 0; transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
 }
-.me-option:hover { border-color: #cbd5e1; }
-.me-option.is-on { border-color: rgba(16, 185, 129, 0.45); background: #f0fdf9; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.08); }
+.me-option:hover { border-color: #d4d4d8; }
+.me-option.is-on { border-color: rgba(var(--pm-brand-rgb), 0.45); background: var(--pm-brand-50); box-shadow: 0 0 0 3px rgba(var(--pm-brand-rgb), 0.08); }
 .me-option strong { display: block; font-size: 13.5px; color: var(--pm-text); }
 .me-option small { display: block; font-size: 12px; color: var(--pm-muted); line-height: 1.45; margin-top: 2px; }
 .me-option-icon { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; flex-shrink: 0; font-size: 14px; }
-.me-option-icon.is-emerald { color: var(--pm-emerald-600); background: var(--pm-emerald-50); }
+.me-option-icon.is-emerald { color: var(--pm-brand-600); background: var(--pm-brand-50); }
 .me-option-icon.is-sky { color: #0369a1; background: #f0f9ff; }
 .me-note { margin: 0; font-size: 12.5px; color: var(--pm-muted); }
 .me-note i { color: var(--pm-c-sky); margin-right: 4px; }
-.input-group-text { background: #f8fafc; border-color: #d5dde8; color: var(--pm-muted); font-size: 13px; }
+.input-group-text { background: #fafafa; border-color: #d5dde8; color: var(--pm-muted); font-size: 13px; }
 @media (max-width: 991.98px) {
     .me-grid { grid-template-columns: 1fr; gap: 20px; }
 }

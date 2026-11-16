@@ -43,13 +43,13 @@ export function UserMenu({ transparent = false }) {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-2 p-1.5 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${transparent ? 'hover:bg-white/10' : 'hover:bg-slate-100'}`}
+        className={`flex items-center gap-2 p-1.5 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${transparent ? 'hover:bg-white/10' : 'hover:bg-zinc-100'}`}
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-label="User account menu"
       >
         <UserAvatar user={user} className="h-9 w-9 text-sm" />
-        <span className={`hidden xl:inline text-[15px] font-semibold max-w-[120px] truncate ${transparent ? 'text-white' : 'text-navy'}`}>
+        <span className={`hidden xl:inline text-[15px] font-semibold max-w-[120px] truncate ${transparent ? 'text-white' : 'text-ink'}`}>
           {user.name.split(' ')[0]}
         </span>
         <ChevronDown size={16} className={`transition-transform duration-200 ${transparent ? 'text-white/70' : 'text-muted'} ${isOpen ? 'rotate-180' : ''}`} />
@@ -62,7 +62,7 @@ export function UserMenu({ transparent = false }) {
           aria-orientation="vertical"
         >
           <div className="px-4 py-2 border-b border-border/60">
-            <p className="text-sm font-bold text-navy truncate">{user.name}</p>
+            <p className="text-sm font-bold text-ink truncate">{user.name}</p>
             <p className="text-xs text-muted truncate">{user.phone}</p>
           </div>
 
@@ -70,7 +70,7 @@ export function UserMenu({ transparent = false }) {
             <Link
               to="/dashboard"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 px-4 py-2 text-sm text-navy hover:bg-slate-50 transition-colors"
+              className="flex items-center gap-3 px-4 py-2 text-sm text-ink hover:bg-zinc-50 transition-colors"
               role="menuitem"
             >
               <LayoutDashboard size={16} className="text-muted" />
@@ -80,7 +80,7 @@ export function UserMenu({ transparent = false }) {
             <Link
               to="/wishlist"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 px-4 py-2 text-sm text-navy hover:bg-slate-50 transition-colors"
+              className="flex items-center gap-3 px-4 py-2 text-sm text-ink hover:bg-zinc-50 transition-colors"
               role="menuitem"
             >
               <Heart size={16} className="text-muted" />
@@ -90,7 +90,7 @@ export function UserMenu({ transparent = false }) {
             <Link
               to="/inquiries"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 px-4 py-2 text-sm text-navy hover:bg-slate-50 transition-colors"
+              className="flex items-center gap-3 px-4 py-2 text-sm text-ink hover:bg-zinc-50 transition-colors"
               role="menuitem"
             >
               <MessageSquare size={16} className="text-muted" />
@@ -100,7 +100,7 @@ export function UserMenu({ transparent = false }) {
             <Link
               to="/account/settings"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 px-4 py-2 text-sm text-navy hover:bg-slate-50 transition-colors"
+              className="flex items-center gap-3 px-4 py-2 text-sm text-ink hover:bg-zinc-50 transition-colors"
               role="menuitem"
             >
               <User size={16} className="text-muted" />

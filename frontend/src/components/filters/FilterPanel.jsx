@@ -20,12 +20,12 @@ export function FilterPanel({ values, onChange, categories = [], locations, idPr
   };
 
   const selectCls =
-    'w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm text-navy outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20';
+    'w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm text-ink outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20';
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-1.5">
-        <label htmlFor={`${idPrefix}-category`} className="text-sm font-semibold text-navy">
+        <label htmlFor={`${idPrefix}-category`} className="text-sm font-semibold text-ink">
           Category
         </label>
         <select
@@ -55,7 +55,7 @@ export function FilterPanel({ values, onChange, categories = [], locations, idPr
       </div>
 
       <fieldset>
-        <legend className="mb-2 text-sm font-semibold text-navy">Listing type</legend>
+        <legend className="mb-2 text-sm font-semibold text-ink">Listing type</legend>
         <div className="flex flex-wrap gap-2">
           {[{ value: '', label: 'All' }, ...LISTING_TYPES].map((t) => {
             const active = (values.listing_type || '') === t.value;
@@ -65,7 +65,7 @@ export function FilterPanel({ values, onChange, categories = [], locations, idPr
                 className={`cursor-pointer rounded-full border px-3 py-1.5 text-xs font-semibold transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary ${
                   active
                     ? 'border-primary bg-primary text-white'
-                    : 'border-border bg-white text-slate-700 hover:border-primary hover:text-primary-hover'
+                    : 'border-border bg-white text-zinc-700 hover:border-primary hover:text-primary-hover'
                 }`}
               >
                 <input
@@ -84,7 +84,7 @@ export function FilterPanel({ values, onChange, categories = [], locations, idPr
       </fieldset>
 
       <fieldset className="space-y-3">
-        <legend className="mb-2 text-sm font-semibold text-navy">Location</legend>
+        <legend className="mb-2 text-sm font-semibold text-ink">Location</legend>
         <LocationSearch
           id={`${idPrefix}-loc-search`}
           index={loc}
@@ -147,7 +147,7 @@ export function FilterPanel({ values, onChange, categories = [], locations, idPr
       </fieldset>
 
       <fieldset>
-        <legend className="mb-2 text-sm font-semibold text-navy">Price (৳)</legend>
+        <legend className="mb-2 text-sm font-semibold text-ink">Price (৳)</legend>
         <div className="grid grid-cols-2 gap-2">
           <label className="sr-only" htmlFor={`${idPrefix}-min`}>
             Minimum price

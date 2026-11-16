@@ -21,11 +21,11 @@ export function ImageWithFallback({
   if (error) {
     return (
       <div
-        className={`${aspectRatio} flex w-full items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 ${className}`}
+        className={`${aspectRatio} flex w-full items-center justify-center bg-gradient-to-br from-zinc-100 to-zinc-200 ${className}`}
         role={alt ? 'img' : undefined}
         aria-label={alt ? `${alt} (no photo)` : undefined}
       >
-        <div className="flex flex-col items-center gap-1.5 text-slate-400">
+        <div className="flex flex-col items-center gap-1.5 text-zinc-400">
           <PawPrint size={30} aria-hidden="true" />
           <span className="text-xs font-medium">No photo</span>
         </div>
@@ -34,8 +34,8 @@ export function ImageWithFallback({
   }
 
   return (
-    <div className={`${aspectRatio} relative w-full overflow-hidden bg-slate-100 ${className}`}>
-      {!loaded && <div className="absolute inset-0 animate-pulse bg-slate-200" aria-hidden="true" />}
+    <div className={`${aspectRatio} relative w-full overflow-hidden bg-zinc-100 ${className}`}>
+      {!loaded && <div className="absolute inset-0 animate-pulse bg-zinc-200" aria-hidden="true" />}
       <img
         src={src}
         alt={alt}

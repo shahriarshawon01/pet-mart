@@ -12,7 +12,7 @@ export function SortSelect({ value, onChange, id = 'sort' }) {
         value={value || 'latest'}
         onChange={(e) => onChange(e.target.value)}
         aria-label="Sort listings"
-        className="rounded-lg border border-border bg-white py-2 pl-3 pr-8 text-sm font-medium text-navy outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+        className="rounded-lg border border-border bg-white py-2 pl-3 pr-8 text-sm font-medium text-ink outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
       >
         {SORT_OPTIONS.map((o) => (
           <option key={o.value} value={o.value}>

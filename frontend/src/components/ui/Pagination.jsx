@@ -49,7 +49,7 @@ export function Pagination({ currentPage, lastPage, onPageChange }) {
             className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
               page === currentPage
                 ? 'bg-primary text-white'
-                : 'hover:bg-slate-100 text-navy'
+                : 'hover:bg-zinc-100 text-ink'
             }`}
             aria-label={`Page ${page}`}
             aria-current={page === currentPage ? 'page' : undefined}

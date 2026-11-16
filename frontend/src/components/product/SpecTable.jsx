@@ -22,7 +22,7 @@ export function SpecTable({ attributes, extra = [], labels = {} }) {
           className="-mb-px flex items-baseline justify-between gap-4 border-b border-border px-4 py-3 sm:odd:border-r"
         >
           <dt className="text-sm text-muted">{row.label}</dt>
-          <dd className="text-right text-sm font-semibold text-navy">{row.value}</dd>
+          <dd className="text-right text-sm font-semibold text-ink">{row.value}</dd>
         </div>
       ))}
     </dl>

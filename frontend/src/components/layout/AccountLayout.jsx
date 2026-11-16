@@ -20,7 +20,7 @@ export function AccountLayout({ children, title, subtitle }) {
       {/* Account Header */}
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-border">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-navy">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-ink">
             {title || `Welcome back, ${user?.name ? user.name.split(' ')[0] : 'Member'}`}
           </h1>
           <p className="text-sm text-muted mt-1">
@@ -53,7 +53,7 @@ export function AccountLayout({ children, title, subtitle }) {
                     `flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap shrink-0 transition-colors ${
                       isActive
                         ? 'bg-primary text-white shadow-xs'
-                        : 'bg-white text-slate-700 hover:bg-slate-100 border border-border'
+                        : 'bg-white text-zinc-700 hover:bg-zinc-100 border border-border'
                     }`
                   }
                 >
@@ -67,10 +67,10 @@ export function AccountLayout({ children, title, subtitle }) {
           {/* Desktop vertical sidebar card */}
           <div className="hidden lg:block bg-white rounded-2xl border border-border p-4 shadow-xs sticky top-24">
             {/* User Info Snippet */}
-            <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl mb-4 border border-slate-100">
+            <div className="flex items-center gap-3 p-3 bg-zinc-50 rounded-xl mb-4 border border-zinc-100">
               <UserAvatar user={user} />
               <div className="overflow-hidden">
-                <p className="text-sm font-bold text-navy truncate">{user?.name}</p>
+                <p className="text-sm font-bold text-ink truncate">{user?.name}</p>
                 <p className="text-xs text-muted truncate">{user?.phone}</p>
               </div>
             </div>
@@ -87,7 +87,7 @@ export function AccountLayout({ children, title, subtitle }) {
                       `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
                         isActive
                           ? 'bg-primary text-white shadow-xs'
-                          : 'text-slate-700 hover:bg-slate-50 hover:text-navy'
+                          : 'text-zinc-700 hover:bg-zinc-50 hover:text-ink'
                       }`
                     }
                   >

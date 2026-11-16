@@ -41,11 +41,11 @@ export function LocationSearch({ index, onPick, label = 'Find your location', pl
 
   return (
     <div className="relative flex flex-col gap-1">
-      <label htmlFor={inputId} className="text-sm font-semibold text-navy">
+      <label htmlFor={inputId} className="text-sm font-semibold text-ink">
         {label}
       </label>
       <div className="relative">
-        <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true" />
+        <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" aria-hidden="true" />
         <input
           id={inputId}
           type="text"
@@ -67,13 +67,13 @@ export function LocationSearch({ index, onPick, label = 'Find your location', pl
             blurTimer.current = setTimeout(() => setOpen(false), 120);
           }}
           onKeyDown={onKeyDown}
-          className="w-full rounded-lg border border-border bg-white py-2.5 pl-9 pr-9 text-sm text-navy outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20"
+          className="w-full rounded-lg border border-border bg-white py-2.5 pl-9 pr-9 text-sm text-ink outline-none transition placeholder:text-zinc-400 focus:border-primary focus:ring-2 focus:ring-primary/20"
         />
         {query && (
           <button
             type="button"
             onClick={() => setQuery('')}
-            className="absolute right-2 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-md text-slate-400 hover:bg-slate-100 hover:text-navy"
+            className="absolute right-2 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-md text-zinc-400 hover:bg-zinc-100 hover:text-ink"
             aria-label="Clear location search"
           >
             <X size={14} aria-hidden="true" />
@@ -99,9 +99,9 @@ export function LocationSearch({ index, onPick, label = 'Find your location', pl
                 onClick={() => choose(loc)}
                 className={`flex cursor-pointer items-start gap-2.5 rounded-lg px-3 py-2 ${i === active ? 'bg-primary/10' : ''}`}
               >
-                <MapPin size={16} className="mt-0.5 shrink-0 text-primary-hover" aria-hidden="true" />
+                <MapPin size={16} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
                 <span className="min-w-0">
-                  <span className="block text-sm font-semibold text-navy">
+                  <span className="block text-sm font-semibold text-ink">
                     {loc.name}
                     {loc.bn_name && <span className="ml-1.5 font-normal text-muted">{loc.bn_name}</span>}
                   </span>

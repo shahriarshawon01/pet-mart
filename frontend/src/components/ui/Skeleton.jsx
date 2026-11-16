@@ -3,7 +3,7 @@ import React from 'react';
 export function Skeleton({ className = '', ...props }) {
   return (
     <div
-      className={`animate-pulse bg-slate-200 rounded-lg ${className}`}
+      className={`animate-pulse bg-zinc-200 rounded-lg ${className}`}
       {...props}
     />
   );
@@ -32,13 +32,13 @@ export function PageSkeleton() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-pulse">
       {/* Header bar skeleton */}
       <div className="space-y-3">
-        <div className="h-4 bg-slate-200 rounded w-1/4" />
-        <div className="h-8 bg-slate-200 rounded w-1/2" />
-        <div className="h-4 bg-slate-200 rounded w-1/3" />
+        <div className="h-4 bg-zinc-200 rounded w-1/4" />
+        <div className="h-8 bg-zinc-200 rounded w-1/2" />
+        <div className="h-4 bg-zinc-200 rounded w-1/3" />
       </div>
 
       {/* Hero / Banner skeleton */}
-      <div className="h-48 sm:h-64 bg-slate-200 rounded-2xl" />
+      <div className="h-48 sm:h-64 bg-zinc-200 rounded-2xl" />
 
       {/* Grid skeleton */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">

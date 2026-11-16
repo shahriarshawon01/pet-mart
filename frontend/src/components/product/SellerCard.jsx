@@ -19,7 +19,7 @@ export function SellerAvatar({ seller, size = 'h-14 w-14 text-lg' }) {
   }
   return (
     <span
-      className={`${size} grid shrink-0 place-items-center rounded-full bg-primary/10 font-bold text-primary-hover ring-2 ring-primary/20`}
+      className={`${size} grid shrink-0 place-items-center rounded-full bg-primary/10 font-bold text-primary ring-2 ring-primary/20`}
       aria-hidden="true"
     >
       {initials(seller?.name)}
@@ -41,7 +41,7 @@ export function SellerCard({ seller, isLoggedIn, isOwner, onMessage, onReport })
       <div className="flex items-center gap-3">
         <SellerAvatar seller={seller} />
         <div className="min-w-0">
-          <p className="truncate text-base font-bold text-navy">{seller?.name || 'Seller'}</p>
+          <p className="truncate text-base font-bold text-ink">{seller?.name || 'Seller'}</p>
           {seller?.is_verified ? (
             <VerifiedBadge className="mt-1" />
           ) : (
@@ -56,13 +56,13 @@ export function SellerCard({ seller, isLoggedIn, isOwner, onMessage, onReport })
       </div>
 
       {isOwner ? (
-        <p className="mt-5 rounded-lg bg-slate-50 p-3 text-sm text-muted">This is your listing.</p>
+        <p className="mt-5 rounded-lg bg-zinc-50 p-3 text-sm text-muted">This is your listing.</p>
       ) : (
         <div className="mt-5 flex flex-col gap-2.5">
           {phone &&
             (!isLoggedIn ? (
-              <div className="rounded-xl border border-dashed border-border bg-slate-50 p-3">
-                <p className="flex items-center gap-2 font-mono text-base font-semibold tracking-wider text-navy">
+              <div className="rounded-xl border border-dashed border-border bg-zinc-50 p-3">
+                <p className="flex items-center gap-2 font-mono text-base font-semibold tracking-wider text-ink">
                   <Phone size={16} className="text-muted" aria-hidden="true" />
                   {maskPhone(phone)}
                 </p>
@@ -105,7 +105,7 @@ export function SellerCard({ seller, isLoggedIn, isOwner, onMessage, onReport })
 
       {!isLoggedIn && !isOwner && (
         <p className="mt-3 text-center text-xs text-muted">
-          <Link to="/register" className="font-semibold text-primary-hover hover:underline">
+          <Link to="/register" className="font-semibold text-primary hover:underline">
             Create a free account
           </Link>{' '}
           to message sellers and save listings.

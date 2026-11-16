@@ -246,12 +246,12 @@ export default function ProductDetail() {
             <section className="rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-6">
               <div className="flex flex-wrap items-center gap-2">
                 {type && <Badge color={type.color}>{type.label}</Badge>}
-                {product.is_featured && <Badge color="amber">Featured</Badge>}
+                {product.is_featured && <Badge color="featured">★ Featured</Badge>}
                 {product.is_urgent && <Badge color="red">Urgent</Badge>}
                 {product.status === 'sold' && <Badge color="secondary">Sold</Badge>}
               </div>
-              <h1 className="mt-3 text-2xl font-extrabold leading-tight tracking-tight text-navy sm:text-3xl">{product.title}</h1>
-              <p className="mt-3 text-3xl font-extrabold text-primary-hover">
+              <h1 className="mt-3 text-2xl font-extrabold leading-tight tracking-tight text-ink sm:text-3xl">{product.title}</h1>
+              <p className="mt-3 text-3xl font-extrabold tracking-tight text-ink">
                 {formatPrice(product.price, { isFree: product.is_free })}
                 {product.is_negotiable && product.price ? (
                   <span className="ml-2 text-sm font-semibold text-muted">Negotiable</span>
@@ -280,7 +280,7 @@ export default function ProductDetail() {
                   onClick={toggleSave}
                   disabled={saving}
                   aria-pressed={saved}
-                  iconLeft={<Heart size={16} className={saved ? 'fill-red-500 text-red-500' : ''} />}
+                  iconLeft={<Heart size={16} className={saved ? 'fill-primary text-primary' : ''} />}
                 >
                   {saved ? 'Saved' : 'Save'}
                 </Button>
@@ -302,7 +302,7 @@ export default function ProductDetail() {
             </div>
 
             <section className="rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-6" aria-labelledby="details-heading">
-              <h2 id="details-heading" className="mb-4 text-lg font-bold text-navy">
+              <h2 id="details-heading" className="mb-4 text-lg font-bold text-ink">
                 Details
               </h2>
               <SpecTable
@@ -320,10 +320,10 @@ export default function ProductDetail() {
             </section>
 
             <section className="rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-6" aria-labelledby="desc-heading">
-              <h2 id="desc-heading" className="mb-3 text-lg font-bold text-navy">
+              <h2 id="desc-heading" className="mb-3 text-lg font-bold text-ink">
                 Description
               </h2>
-              <p className="whitespace-pre-line break-words text-[15px] leading-relaxed text-slate-700">
+              <p className="whitespace-pre-line break-words text-[15px] leading-relaxed text-zinc-700">
                 {product.description || 'No description provided.'}
               </p>
             </section>
@@ -355,7 +355,7 @@ export default function ProductDetail() {
 
       {(similarLoading || similar.length > 0) && (
         <Container className="pt-6">
-          <h2 className="mb-5 text-xl font-extrabold tracking-tight text-navy">Similar listings</h2>
+          <h2 className="mb-5 text-xl font-extrabold tracking-tight text-ink">Similar listings</h2>
           <ProductGrid products={similar} loading={similarLoading} skeletonCount={4} />
         </Container>
       )}
@@ -432,13 +432,13 @@ export default function ProductDetail() {
       >
         <form onSubmit={sendReport} className="space-y-4">
           <fieldset>
-            <legend className="mb-2 text-sm font-semibold text-navy">Reason</legend>
+            <legend className="mb-2 text-sm font-semibold text-ink">Reason</legend>
             <div className="space-y-2">
               {REPORT_REASONS.map((r) => (
                 <label
                   key={r}
                   className={`flex cursor-pointer items-center gap-3 rounded-lg border px-3 py-2.5 text-sm transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary ${
-                    reportReason === r ? 'border-red-300 bg-red-50 text-red-800' : 'border-border hover:bg-slate-50'
+                    reportReason === r ? 'border-red-300 bg-red-50 text-red-800' : 'border-border hover:bg-zinc-50'
                   }`}
                 >
                   <input
@@ -457,6 +457,7 @@ export default function ProductDetail() {
           <Textarea
             label="More details (optional)"
             id="report-note"
+            placeholder="Tell us what is wrong with this listing (optional)"
             rows={3}
             maxLength={1000}
             value={reportNote}

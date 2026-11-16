@@ -24,7 +24,7 @@ function Section({ title, description, children }) {
   return (
     <section className="rounded-2xl border border-border bg-white shadow-xs">
       <header className="border-b border-border px-5 py-4 sm:px-6">
-        <h2 className="text-base font-bold text-navy">{title}</h2>
+        <h2 className="text-base font-bold text-ink">{title}</h2>
         {description && <p className="mt-0.5 text-sm text-muted">{description}</p>}
       </header>
       <div className="p-5 sm:p-6">{children}</div>
@@ -193,7 +193,7 @@ export default function ProfileSettings() {
               if (file) uploadPhoto(file);
             }}
             className={`group flex flex-col items-start gap-5 rounded-xl border-2 border-dashed p-4 transition sm:flex-row sm:items-center ${
-              dragging ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/60 hover:bg-slate-50'
+              dragging ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/60 hover:bg-zinc-50'
             } ${photoBusy ? 'cursor-progress' : 'cursor-pointer'} focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30`}
           >
             <div className="relative">
@@ -202,13 +202,13 @@ export default function ProfileSettings() {
                 <Camera size={15} />
               </span>
               {photoBusy && (
-                <span className="absolute inset-0 grid place-items-center rounded-full bg-navy/50 text-white">
+                <span className="absolute inset-0 grid place-items-center rounded-full bg-ink/50 text-white">
                   <Loader2 size={22} className="animate-spin" aria-hidden="true" />
                 </span>
               )}
             </div>
             <div className="min-w-0">
-              <p className="font-semibold text-navy">
+              <p className="font-semibold text-ink">
                 {photoBusy ? 'Uploading…' : user?.image ? 'Click to change your photo' : 'Click to upload a photo'}
               </p>
               <p className="mt-0.5 text-sm text-muted">or drag and drop it here</p>
@@ -268,8 +268,8 @@ export default function ProfileSettings() {
             </div>
 
             <div className="flex flex-col gap-1">
-              <span className="text-sm font-semibold text-navy">Mobile number</span>
-              <div className="flex items-center gap-2 rounded-lg border border-border bg-slate-50 px-3 py-2.5 text-sm text-slate-600">
+              <span className="text-sm font-semibold text-ink">Mobile number</span>
+              <div className="flex items-center gap-2 rounded-lg border border-border bg-zinc-50 px-3 py-2.5 text-sm text-zinc-600">
                 <Phone size={15} className="text-muted" aria-hidden="true" />
                 {user?.phone}
               </div>
@@ -279,16 +279,16 @@ export default function ProfileSettings() {
             <div>
               {details.location_id ? (
                 <div className="flex flex-col gap-1">
-                  <span className="text-sm font-semibold text-navy">Location</span>
+                  <span className="text-sm font-semibold text-ink">Location</span>
                   <div className="flex items-center justify-between gap-2 rounded-lg border border-border px-3 py-2.5">
-                    <span className="flex min-w-0 items-center gap-2 text-sm text-navy">
-                      <MapPin size={15} className="shrink-0 text-primary-hover" aria-hidden="true" />
+                    <span className="flex min-w-0 items-center gap-2 text-sm text-ink">
+                      <MapPin size={15} className="shrink-0 text-primary" aria-hidden="true" />
                       <span className="truncate">{locationPath || 'Selected location'}</span>
                     </span>
                     <button
                       type="button"
                       onClick={() => setDetails({ ...details, location_id: '' })}
-                      className="grid h-7 w-7 place-items-center rounded-md text-slate-400 hover:bg-slate-100 hover:text-navy"
+                      className="grid h-7 w-7 place-items-center rounded-md text-zinc-400 hover:bg-zinc-100 hover:text-ink"
                       aria-label="Clear location"
                     >
                       <X size={14} aria-hidden="true" />
@@ -333,6 +333,7 @@ export default function ProfileSettings() {
           <form onSubmit={submitPassword} noValidate className="space-y-5">
             <PasswordInput
               id="ps-current"
+              placeholder="Enter your current password"
               label="Current password"
               autoComplete="current-password"
               value={pw.current_password}
@@ -342,6 +343,7 @@ export default function ProfileSettings() {
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <PasswordInput
                 id="ps-new"
+                placeholder="Create a new password"
                 label="New password"
                 autoComplete="new-password"
                 value={pw.password}
@@ -350,6 +352,7 @@ export default function ProfileSettings() {
               />
               <PasswordInput
                 id="ps-confirm"
+                placeholder="Re-enter the new password"
                 label="Confirm new password"
                 autoComplete="new-password"
                 value={pw.password_confirmation}

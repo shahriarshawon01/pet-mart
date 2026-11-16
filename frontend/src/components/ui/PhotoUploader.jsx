@@ -155,13 +155,13 @@ export function PhotoUploader({ photos, setPhotos, max = 6, error }) {
           if (!full) addFiles(e.dataTransfer.files);
         }}
         className={`rounded-2xl border-2 border-dashed p-6 text-center transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 sm:p-8 ${
-          dragging ? 'border-primary bg-primary/5' : error ? 'border-red-300 bg-red-50/40' : 'border-slate-300 bg-slate-50/60'
+          dragging ? 'border-primary bg-primary/5' : error ? 'border-red-300 bg-red-50/40' : 'border-zinc-300 bg-zinc-50/60'
         } ${full ? 'cursor-not-allowed opacity-60' : 'cursor-pointer hover:border-primary/60 hover:bg-primary/5'}`}
       >
-        <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-white text-primary-hover shadow-sm ring-1 ring-slate-200">
+        <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-white text-primary shadow-sm ring-1 ring-zinc-200">
           <UploadCloud size={28} aria-hidden="true" />
         </span>
-        <p className="mt-3 text-base font-bold text-navy">Add photos of your pet or item</p>
+        <p className="mt-3 text-base font-bold text-ink">Add photos of your pet or item</p>
         <p className="mt-1 text-sm text-muted">
           <span className="hidden sm:inline">Click anywhere here or drag and drop photos. </span>
           JPG, PNG or WebP, up to 5 MB each. Large photos are resized automatically.
@@ -230,13 +230,13 @@ export function PhotoUploader({ photos, setPhotos, max = 6, error }) {
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {photos.map((p, i) => (
             <li key={p.id} className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
-              <div className="relative aspect-[4/3] bg-slate-100">
+              <div className="relative aspect-[4/3] bg-zinc-100">
                 <img src={p.preview} alt={`Photo ${i + 1}`} className="h-full w-full object-cover" />
                 {i === 0 && p.status !== 'error' && (
                   <span className="absolute left-2 top-2 rounded-full bg-accent px-2 py-0.5 text-[11px] font-bold text-white shadow">Cover</span>
                 )}
                 {p.status === 'uploading' && (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-navy/55 text-white">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-ink/55 text-white">
                     <Loader2 size={22} className="animate-spin" aria-hidden="true" />
                     <span className="text-xs font-semibold">Uploading {p.progress || 0}%</span>
                     <span className="mx-6 h-1.5 w-3/4 overflow-hidden rounded-full bg-white/25">
@@ -267,7 +267,7 @@ export function PhotoUploader({ photos, setPhotos, max = 6, error }) {
                     onClick={() => move(i, i - 1)}
                     disabled={i === 0}
                     aria-label={`Move photo ${i + 1} left`}
-                    className="grid h-9 w-9 place-items-center rounded-lg text-muted hover:bg-slate-100 hover:text-navy disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="grid h-9 w-9 place-items-center rounded-lg text-muted hover:bg-zinc-100 hover:text-ink disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   >
                     <ChevronLeft size={17} />
                   </button>
@@ -276,7 +276,7 @@ export function PhotoUploader({ photos, setPhotos, max = 6, error }) {
                     onClick={() => move(i, i + 1)}
                     disabled={i === photos.length - 1}
                     aria-label={`Move photo ${i + 1} right`}
-                    className="grid h-9 w-9 place-items-center rounded-lg text-muted hover:bg-slate-100 hover:text-navy disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="grid h-9 w-9 place-items-center rounded-lg text-muted hover:bg-zinc-100 hover:text-ink disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   >
                     <ChevronRight size={17} />
                   </button>
@@ -307,13 +307,13 @@ export function PhotoUploader({ photos, setPhotos, max = 6, error }) {
 
       {/* Paste a link instead */}
       <details className="group rounded-xl border border-border bg-white">
-        <summary className="flex cursor-pointer list-none items-center gap-2 px-4 py-3 text-sm font-semibold text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+        <summary className="flex cursor-pointer list-none items-center gap-2 px-4 py-3 text-sm font-semibold text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <Link2 size={16} className="text-muted" aria-hidden="true" />
           Or add a photo by link
           <ChevronRight size={16} className="ml-auto text-muted transition-transform group-open:rotate-90" aria-hidden="true" />
         </summary>
         <div className="border-t border-border p-4">
-          <label htmlFor="photo-link" className="text-sm font-semibold text-navy">
+          <label htmlFor="photo-link" className="text-sm font-semibold text-ink">
             Direct image link
           </label>
           <div className="mt-1 flex flex-col gap-2 sm:flex-row">
@@ -336,7 +336,7 @@ export function PhotoUploader({ photos, setPhotos, max = 6, error }) {
               }}
               aria-invalid={!!linkError}
               aria-describedby="photo-link-help"
-              className={`min-w-0 flex-1 rounded-lg border bg-white px-3 py-2.5 text-sm text-navy outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:bg-slate-50 ${
+              className={`min-w-0 flex-1 rounded-lg border bg-white px-3 py-2.5 text-sm text-ink outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:bg-zinc-50 ${
                 linkError ? 'border-red-400' : 'border-border'
               }`}
             />

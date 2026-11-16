@@ -73,7 +73,7 @@
 
                         <div v-if="active === 'homepage'" class="pm-card-body pb-0">
                             <p class="pm-section-title">Live preview</p>
-                            <div class="gs-hero" :style="heroImage ? { backgroundImage: `linear-gradient(90deg, rgba(15,23,42,.88) 0%, rgba(15,23,42,.55) 60%, rgba(15,23,42,.2) 100%), url('${heroImage}')` } : null">
+                            <div class="gs-hero" :style="heroImage ? { backgroundImage: `linear-gradient(90deg, rgba(9, 9, 11, .88) 0%, rgba(9, 9, 11, .55) 60%, rgba(9, 9, 11, .2) 100%), url('${heroImage}')` } : null">
                                 <span class="gs-hero-badge"><i class="fa-solid fa-shield-halved"></i> {{ valueOrDefault('home_hero_badge', 'Verified pet & goods marketplace in Bangladesh') }}</span>
                                 <h4 class="gs-hero-title">
                                     {{ heroTitle.lead }} <span>{{ heroTitle.last }}</span>
@@ -518,39 +518,39 @@ export default {
     padding: 2px 8px;
     border-radius: 6px;
 }
-.gs-visibility.is-public { color: var(--pm-emerald-600); background: var(--pm-emerald-50); }
-.input-group-text { background: #f8fafc; border-color: #d5dde8; color: var(--pm-muted); border-radius: 10px 0 0 10px; }
+.gs-visibility.is-public { color: var(--pm-brand-600); background: var(--pm-brand-50); }
+.input-group-text { background: #fafafa; border-color: #d5dde8; color: var(--pm-muted); border-radius: 10px 0 0 10px; }
 
 .gs-image {
     position: relative;
     aspect-ratio: 1920 / 700;
     border-radius: 12px;
     overflow: hidden;
-    background: var(--pm-navy);
+    background: var(--pm-ink);
     border: 1px solid var(--pm-border);
     transition: border-color 0.15s, box-shadow 0.15s;
 }
 .gs-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.gs-image.is-empty { background: #f8fafc; border: 1.5px dashed #cbd5e1; }
-.gs-image.is-drag { border-color: var(--pm-emerald); box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15); }
+.gs-image.is-empty { background: #fafafa; border: 1.5px dashed #d4d4d8; }
+.gs-image.is-drag { border-color: var(--pm-brand); box-shadow: 0 0 0 4px rgba(var(--pm-brand-rgb), 0.15); }
 .gs-image { cursor: pointer; }
 .gs-image.is-busy { cursor: progress; }
-.gs-image:hover, .gs-image:focus-visible { border-color: var(--pm-emerald); outline: none; }
-.gs-image:focus-visible { box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2); }
-.gs-image.is-empty:hover { background: #f0fdf9; }
+.gs-image:hover, .gs-image:focus-visible { border-color: var(--pm-brand); outline: none; }
+.gs-image:focus-visible { box-shadow: 0 0 0 4px rgba(var(--pm-brand-rgb), 0.2); }
+.gs-image.is-empty:hover { background: var(--pm-brand-50); }
 .gs-image-hover {
     position: absolute;
     inset: 0;
     display: grid;
     place-items: center;
-    background: rgba(15, 23, 42, 0.45);
+    background: rgba(9, 9, 11, 0.45);
     color: #fff;
     font-weight: 600;
     font-size: 13.5px;
     opacity: 0;
     transition: opacity 0.15s;
 }
-.gs-image-hover span { padding: 8px 14px; border-radius: 999px; background: rgba(15, 23, 42, 0.55); }
+.gs-image-hover span { padding: 8px 14px; border-radius: 999px; background: rgba(9, 9, 11, 0.55); }
 .gs-image:hover .gs-image-hover, .gs-image:focus-visible .gs-image-hover { opacity: 1; }
 .gs-image-empty {
     position: absolute;
@@ -565,14 +565,14 @@ export default {
     color: var(--pm-muted);
     font-size: 13px;
 }
-.gs-image-empty i { font-size: 28px; color: #94a3b8; margin-bottom: 4px; }
+.gs-image-empty i { font-size: 28px; color: #a1a1aa; margin-bottom: 4px; }
 .gs-image-empty strong { color: var(--pm-text); }
 .gs-image-progress {
     position: absolute;
     inset: 0;
     display: grid;
     place-items: center;
-    background: rgba(15, 23, 42, 0.65);
+    background: rgba(9, 9, 11, 0.65);
     color: #fff;
     font-weight: 600;
     font-size: 13px;
@@ -582,7 +582,7 @@ export default {
     border-radius: 14px;
     padding: 28px;
     color: #fff;
-    background: linear-gradient(120deg, var(--pm-navy) 0%, #1e3a5f 100%);
+    background: linear-gradient(120deg, var(--pm-ink) 0%, #1e3a5f 100%);
     background-size: cover;
     background-position: center;
     min-height: 220px;
@@ -597,18 +597,18 @@ export default {
     font-weight: 600;
     padding: 4px 10px;
     border-radius: 999px;
-    background: rgba(16, 185, 129, 0.18);
+    background: rgba(var(--pm-brand-rgb), 0.18);
     color: #6ee7b7;
     border: 1px solid rgba(110, 231, 183, 0.3);
 }
 .gs-hero-title { color: #fff; font-size: 24px; line-height: 1.25; margin: 0; max-width: 560px; }
-.gs-hero-title span { color: var(--pm-emerald); }
-.gs-hero-sub { color: #cbd5e1; font-size: 13.5px; margin: 0; max-width: 520px; }
+.gs-hero-title span { color: var(--pm-brand); }
+.gs-hero-sub { color: #d4d4d8; font-size: 13.5px; margin: 0; max-width: 520px; }
 .gs-hero-search {
     align-self: flex-start;
     margin-top: 4px;
     background: #fff;
-    color: #94a3b8;
+    color: #a1a1aa;
     font-size: 13px;
     padding: 9px 14px;
     border-radius: 10px;
@@ -626,14 +626,14 @@ export default {
     flex-wrap: wrap;
     padding: 12px 16px;
     border-radius: 14px;
-    background: var(--pm-navy);
-    color: #e2e8f0;
+    background: var(--pm-ink);
+    color: #e4e4e7;
     font-size: 13.5px;
-    box-shadow: 0 16px 32px -12px rgba(15, 23, 42, 0.5);
+    box-shadow: 0 16px 32px -12px rgba(9, 9, 11, 0.5);
 }
 .gs-savebar i { color: var(--pm-c-amber); margin-right: 6px; }
-.gs-savebar .btn-light { background: transparent; color: #e2e8f0; border-color: rgba(148, 163, 184, 0.35); }
-.gs-savebar .btn-light:hover { background: rgba(148, 163, 184, 0.15); color: #fff; }
+.gs-savebar .btn-light { background: transparent; color: #e4e4e7; border-color: rgba(255, 255, 255, 0.35); }
+.gs-savebar .btn-light:hover { background: rgba(255, 255, 255, 0.15); color: #fff; }
 .gs-bar-enter-active, .gs-bar-leave-active { transition: transform 0.2s, opacity 0.2s; }
 .gs-bar-enter, .gs-bar-leave-to { transform: translateY(12px); opacity: 0; }
 

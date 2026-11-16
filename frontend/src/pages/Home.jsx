@@ -32,13 +32,13 @@ function SectionHeader({ title, subtitle, to, linkLabel = 'View all' }) {
   return (
     <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-1">
       <div className="min-w-0">
-        <h2 className="text-lg font-extrabold tracking-tight text-navy sm:text-xl">{title}</h2>
+        <h2 className="text-lg font-extrabold tracking-tight text-ink sm:text-xl">{title}</h2>
         {subtitle && <p className="mt-0.5 text-sm text-muted">{subtitle}</p>}
       </div>
       {to && (
         <Link
           to={to}
-          className="inline-flex items-center gap-1 rounded text-sm font-semibold text-primary-hover hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="inline-flex items-center gap-1 rounded text-sm font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           {linkLabel} <ArrowRight size={15} aria-hidden="true" />
         </Link>
@@ -49,7 +49,7 @@ function SectionHeader({ title, subtitle, to, linkLabel = 'View all' }) {
 
 const TRUST = [
   { icon: ShieldCheck, label: 'Every listing checked by moderators' },
-  { icon: BadgeCheck, label: 'Verified sellers and breeders' },
+  { icon: BadgeCheck, label: 'Verified seller numbers' },
   { icon: Megaphone, label: 'Free to post' },
 ];
 
@@ -119,7 +119,7 @@ export default function Home() {
   };
 
   const fieldCls =
-    'h-12 w-full appearance-none rounded-xl bg-transparent px-4 text-[15px] text-navy outline-none transition placeholder:text-slate-400 focus:bg-slate-50';
+    'h-12 w-full appearance-none rounded-xl bg-transparent px-4 text-[15px] text-ink outline-none transition placeholder:text-zinc-400 focus:bg-zinc-50';
 
   // Hero text and banner come from admin General Settings, with built-in fallbacks
   const heroTitle = setting(settings, 'home_hero_title', 'Find & Sell Pets, Animals & Supplies Safely');
@@ -137,7 +137,7 @@ export default function Home() {
   return (
     <div className="pb-4">
       {/* Hero – sits under the fixed navbar */}
-      <section className="relative isolate overflow-hidden bg-navy pt-[72px] text-white">
+      <section className="hero-gradient relative isolate overflow-hidden pt-[72px] text-white">
         {heroBanner ? (
           <>
             <img
@@ -147,30 +147,29 @@ export default function Home() {
               fetchpriority="high"
             />
             {/* Keep text readable on any photo */}
-            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-navy/75 via-navy/45 to-navy/80" aria-hidden="true" />
+            <div className="hero-photo-tint absolute inset-0 -z-10" aria-hidden="true" />
           </>
         ) : (
           <>
             <div className="hero-grid pointer-events-none absolute inset-0 -z-10 opacity-[0.07]" aria-hidden="true" />
-            <div className="pointer-events-none absolute -left-40 -top-40 -z-10 h-[32rem] w-[32rem] rounded-full bg-primary/20 blur-[120px]" aria-hidden="true" />
-            <div className="pointer-events-none absolute -bottom-48 right-0 -z-10 h-[28rem] w-[28rem] rounded-full bg-emerald-400/10 blur-[120px]" aria-hidden="true" />
+                        <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" aria-hidden="true" />
           </>
         )}
 
         <Container className="relative pb-20 pt-12 sm:pb-24 sm:pt-16">
           <div className="hero-fade mx-auto text-center">
-            <span className="inline-flex max-w-full items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold text-emerald-200 ring-1 ring-inset ring-white/15 backdrop-blur">
+            <span className="inline-flex max-w-full items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold text-[#ffc2c4] ring-1 ring-inset ring-white/15 backdrop-blur">
               <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
               </span>
               <span className="truncate">{heroBadge}</span>
             </span>
             <h1 className="mt-5 text-[2rem] font-extrabold leading-tight tracking-tight text-balance sm:text-[2.6rem] lg:text-[2.75rem] xl:text-[3rem]">
               {titleLead}{titleLead ? ' ' : ''}
-              <span className="bg-gradient-to-r from-emerald-300 to-primary bg-clip-text text-transparent">{titleLast}</span>
+              <span className="bg-gradient-to-r from-[#ffb0b2] via-[#ff7a7e] to-primary bg-clip-text text-transparent">{titleLast}</span>
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-200/90 sm:text-lg">{heroSubtitle}</p>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-zinc-200/90 sm:text-lg">{heroSubtitle}</p>
           </div>
 
           <form
@@ -182,7 +181,7 @@ export default function Home() {
               <label htmlFor="hero-search" className="sr-only">
                 What are you looking for?
               </label>
-              <Search size={18} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true" />
+              <Search size={18} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" aria-hidden="true" />
               <input
                 id="hero-search"
                 type="search"
@@ -192,8 +191,8 @@ export default function Home() {
                 className={`${fieldCls} pl-11`}
               />
             </div>
-            <span className="hidden h-7 bg-slate-200 lg:block" aria-hidden="true" />
-            <div className="border-t border-slate-100 sm:border-t-0">
+            <span className="hidden h-7 bg-zinc-200 lg:block" aria-hidden="true" />
+            <div className="border-t border-zinc-100 sm:border-t-0">
               <label htmlFor="hero-category" className="sr-only">
                 Category
               </label>
@@ -211,8 +210,8 @@ export default function Home() {
                 ))}
               </select>
             </div>
-            <span className="hidden h-7 bg-slate-200 lg:block" aria-hidden="true" />
-            <div className="border-t border-slate-100 sm:border-t-0">
+            <span className="hidden h-7 bg-zinc-200 lg:block" aria-hidden="true" />
+            <div className="border-t border-zinc-100 sm:border-t-0">
               <label htmlFor="hero-location" className="sr-only">
                 Location
               </label>
@@ -245,7 +244,7 @@ export default function Home() {
             </Button>
           </form>
 
-          <ul className="hero-fade hero-fade-delay-2 mx-auto mt-7 flex max-w-3xl flex-col items-center justify-center gap-3 text-sm text-slate-300 sm:flex-row sm:flex-wrap sm:gap-x-8">
+          <ul className="hero-fade hero-fade-delay-2 mx-auto mt-7 flex max-w-3xl flex-col items-center justify-center gap-3 text-sm text-zinc-300 sm:flex-row sm:flex-wrap sm:gap-x-8">
             {TRUST.map(({ icon: Icon, label }) => (
               <li key={label} className="flex items-center gap-2">
                 <Icon size={17} className="text-primary" aria-hidden="true" />
@@ -257,7 +256,7 @@ export default function Home() {
 
         <a
           href="#categories"
-          className="hero-fade hero-fade-delay-2 absolute bottom-4 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="hero-fade hero-fade-delay-2 absolute bottom-4 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold text-zinc-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           Explore categories
           <ChevronDown size={20} className="scroll-cue" aria-hidden="true" />
@@ -285,13 +284,13 @@ export default function Home() {
                     to={`/browse?category_slug=${cat.slug}`}
                     className="group flex h-full min-w-44 items-center gap-3 rounded-xl border border-border bg-white px-3 py-2.5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   >
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary-hover transition duration-200 group-hover:bg-primary group-hover:text-white">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary transition duration-200 group-hover:bg-primary group-hover:text-white">
                       <Icon size={20} aria-hidden="true" />
                     </span>
-                    <span className="min-w-0 flex-1 text-sm font-semibold leading-tight text-navy">{cat.name}</span>
+                    <span className="min-w-0 flex-1 text-sm font-semibold leading-tight text-ink">{cat.name}</span>
                     <ArrowRight
                       size={15}
-                      className="shrink-0 -translate-x-1 text-slate-300 opacity-0 transition duration-200 group-hover:translate-x-0 group-hover:text-primary-hover group-hover:opacity-100"
+                      className="shrink-0 -translate-x-1 text-zinc-300 opacity-0 transition duration-200 group-hover:translate-x-0 group-hover:text-primary-hover group-hover:opacity-100"
                       aria-hidden="true"
                     />
                   </Link>
@@ -343,22 +342,22 @@ export default function Home() {
       {/* How it works */}
       <section className="border-y border-border bg-white">
         <Container className="py-12 sm:py-16">
-          <h2 className="text-center text-xl font-extrabold tracking-tight text-navy sm:text-2xl">How PetMart works</h2>
+          <h2 className="text-center text-xl font-extrabold tracking-tight text-ink sm:text-2xl">How PetMart works</h2>
           <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2">
             {[
               ['For buyers', STEPS.buyers],
               ['For sellers', STEPS.sellers],
             ].map(([heading, steps]) => (
               <div key={heading}>
-                <h3 className="mb-5 text-xs font-bold uppercase tracking-wider text-primary-hover">{heading}</h3>
+                <h3 className="mb-5 text-xs font-bold uppercase tracking-wider text-primary">{heading}</h3>
                 <ol className="space-y-5">
                   {steps.map(({ icon: Icon, title, text }, i) => (
                     <li key={title} className="flex gap-4">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-slate-100 text-navy">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-zinc-100 text-ink">
                         <Icon size={20} aria-hidden="true" />
                       </span>
                       <div>
-                        <p className="font-bold text-navy">
+                        <p className="font-bold text-ink">
                           <span className="text-muted">{i + 1}.</span> {title}
                         </p>
                         <p className="text-sm text-muted">{text}</p>
@@ -374,20 +373,20 @@ export default function Home() {
 
       {/* CTA + safety */}
       <Container className="grid grid-cols-1 gap-5 py-12 sm:py-16 lg:grid-cols-[1.4fr_1fr]">
-        <div className="relative overflow-hidden rounded-3xl bg-primary p-7 text-white sm:p-10">
+        <div className="hero-gradient relative overflow-hidden rounded-3xl p-7 text-white sm:p-10">
           <PawPrint size={160} className="pointer-events-none absolute -bottom-8 -right-6 text-white/10" aria-hidden="true" />
           <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Have a pet or item to list?</h2>
-          <p className="mt-2 max-w-md text-emerald-50">
+          <p className="mt-2 max-w-md text-white/80">
             Posting is free. Add photos and details, and we'll review your listing before it goes live.
           </p>
-          <Button as="link" to="/create-listing" variant="secondary" size="lg" className="mt-6" iconRight={<ArrowRight size={18} />}>
+          <Button as="link" to="/create-listing" size="lg" className="mt-6 shadow-[0_10px_30px_-10px_rgba(239,78,82,0.8)]" iconRight={<ArrowRight size={18} />}>
             Post your listing
           </Button>
         </div>
         <div className="rounded-3xl border border-amber-200 bg-amber-50 p-7 sm:p-8">
           <ShieldCheck size={28} className="text-amber-600" aria-hidden="true" />
-          <h2 className="mt-3 text-lg font-extrabold text-navy">Stay safe when buying</h2>
-          <ul className="mt-3 space-y-2 text-sm text-slate-700">
+          <h2 className="mt-3 text-lg font-extrabold text-ink">Stay safe when buying</h2>
+          <ul className="mt-3 space-y-2 text-sm text-zinc-700">
             <li>Meet in a public place and see the pet in person.</li>
             <li>Never pay an advance or deposit before meeting.</li>
             <li>Ask for vaccination records and health papers.</li>

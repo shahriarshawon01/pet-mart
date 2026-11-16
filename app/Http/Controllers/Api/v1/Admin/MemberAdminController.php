@@ -90,7 +90,7 @@ class MemberAdminController extends AdminController
         $member = $this->members()->findOrFail($id);
         $member->update(['is_verified' => ! $member->is_verified]);
 
-        return $this->ok($this->present($member), $member->is_verified ? 'Seller badge granted.' : 'Seller badge removed.');
+        return $this->ok($this->present($member), $member->is_verified ? 'Mobile number marked as verified.' : 'Number verification removed.');
     }
 
     public function toggleStatus(int $id): JsonResponse

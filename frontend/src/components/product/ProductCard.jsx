@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, MapPin, Clock } from 'lucide-react';
+import { Heart, MapPin, Clock, Star } from 'lucide-react';
 import { ImageWithFallback } from '../ui/ImageWithFallback';
 import { Badge } from '../ui/Badge';
 import { VerifiedBadge } from './VerifiedBadge';
@@ -29,7 +29,8 @@ export function ProductCard({ product, saved = false, onSavedChange, layout = 'g
         />
         <div className="pointer-events-none absolute left-2.5 top-2.5 flex flex-wrap gap-1.5">
           {product.is_featured && (
-            <span className="rounded-full bg-accent px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-white shadow-sm">
+            <span className="inline-flex items-center gap-1 rounded-full bg-ink/90 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-white shadow-sm backdrop-blur-sm">
+              <Star size={11} className="fill-amber-400 text-amber-400" aria-hidden="true" />
               Featured
             </span>
           )}
@@ -47,9 +48,9 @@ export function ProductCard({ product, saved = false, onSavedChange, layout = 'g
         disabled={busy}
         aria-pressed={isSaved}
         aria-label={isSaved ? `Remove ${product.title} from saved` : `Save ${product.title}`}
-        className="absolute right-2.5 top-2.5 z-10 grid h-9 w-9 place-items-center rounded-full bg-white/95 text-slate-600 shadow-md transition hover:scale-105 hover:text-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-60"
+        className="absolute right-2.5 top-2.5 z-10 grid h-9 w-9 place-items-center rounded-full bg-white/95 text-zinc-500 shadow-md transition hover:scale-105 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-60"
       >
-        <Heart size={18} className={isSaved ? 'fill-red-500 text-red-500' : ''} aria-hidden="true" />
+        <Heart size={18} className={isSaved ? 'fill-primary text-primary' : ''} aria-hidden="true" />
       </button>
 
       <div className="flex min-w-0 flex-1 flex-col p-4">
@@ -57,10 +58,10 @@ export function ProductCard({ product, saved = false, onSavedChange, layout = 'g
           <span className="truncate text-[11px] font-semibold uppercase tracking-wide text-muted">
             {product.category?.name}
           </span>
-          {product.seller?.is_verified && <VerifiedBadge text="Verified" />}
+          {product.seller?.is_verified && <VerifiedBadge />}
         </div>
 
-        <h3 className="line-clamp-2 text-[15px] font-bold leading-snug text-navy">
+        <h3 className="line-clamp-2 text-[15px] font-bold leading-snug text-ink">
           <Link
             to={href}
             className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
@@ -69,7 +70,7 @@ export function ProductCard({ product, saved = false, onSavedChange, layout = 'g
           </Link>
         </h3>
 
-        <p className="mt-2 text-lg font-extrabold text-primary-hover">
+        <p className="mt-2 text-lg font-extrabold tracking-tight text-ink">
           {formatPrice(product.price, { isFree: product.is_free })}
           {product.is_negotiable && product.price ? (
             <span className="ml-1.5 text-xs font-medium text-muted">Negotiable</span>

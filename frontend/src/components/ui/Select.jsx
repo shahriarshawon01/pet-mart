@@ -15,14 +15,14 @@ export const Select = forwardRef(function Select({
   return (
     <div className="flex flex-col gap-1">
       {label && (
-        <label htmlFor={selectId} className="text-sm font-semibold text-navy">
+        <label htmlFor={selectId} className="text-sm font-semibold text-ink">
           {label}{required && <span className="text-red-500 ml-0.5">*</span>}
         </label>
       )}
       <select
         ref={ref}
         id={selectId}
-        className={`w-full px-3 py-2.5 border rounded-lg text-sm text-navy bg-white outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:bg-slate-50 disabled:cursor-not-allowed ${error ? 'border-red-400' : 'border-border'} ${className}`}
+        className={`w-full px-3 py-2.5 border rounded-lg text-sm text-ink bg-white outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:bg-zinc-50 disabled:cursor-not-allowed ${error ? 'border-red-400' : 'border-border'} ${className}`}
         aria-invalid={!!error}
         aria-describedby={error ? `${selectId}-error` : undefined}
         {...props}

@@ -4,9 +4,10 @@ import { Loader2 } from 'lucide-react';
 
 const variantClasses = {
   primary: 'bg-primary hover:bg-primary-hover text-white shadow-sm hover:shadow-md',
-  secondary: 'bg-navy hover:bg-navy/90 text-white shadow-sm',
-  outline: 'bg-transparent border border-border hover:bg-slate-50 text-navy',
-  ghost: 'bg-transparent hover:bg-slate-100 text-navy',
+  secondary: 'bg-ink hover:bg-ink/90 text-white shadow-sm',
+  outline: 'bg-transparent border border-border hover:bg-zinc-50 text-ink',
+  'outline-primary': 'bg-white border border-primary text-primary hover:bg-primary-soft',
+  ghost: 'bg-transparent hover:bg-zinc-100 text-ink',
   danger: 'bg-red-600 hover:bg-red-700 text-white shadow-sm',
 };
 

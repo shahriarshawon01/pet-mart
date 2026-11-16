@@ -443,7 +443,7 @@ export default {
 .ld-summary {
     padding: 16px 18px;
     border-radius: 14px;
-    background: linear-gradient(135deg, #f8fafc 0%, #ecfdf5 100%);
+    background: linear-gradient(135deg, #fafafa 0%, var(--pm-brand-50) 100%);
     border: 1px solid var(--pm-border);
 }
 .ld-id { font-size: 12px; font-weight: 600; color: var(--pm-muted); }
@@ -453,7 +453,7 @@ export default {
     font-size: 12px; font-weight: 600; color: var(--pm-text-2);
     background: #fff; border: 1px solid var(--pm-border); border-radius: 999px; padding: 3px 10px;
 }
-.ld-pill i { color: var(--pm-emerald-600); font-size: 11px; }
+.ld-pill i { color: var(--pm-brand-600); font-size: 11px; }
 .ld-note { display: flex; gap: 10px; padding: 12px 14px; border-radius: 12px; font-size: 13px; line-height: 1.5; }
 .ld-note i { margin-top: 3px; }
 .ld-note strong { display: block; }
@@ -485,5 +485,5 @@ export default {
 .ld-history li.is-warning::before { background: var(--pm-c-amber); }
 .ld-history strong { color: var(--pm-text); }
 .ld-history time { font-size: 12px; color: var(--pm-muted); white-space: nowrap; }
-.ld-reason { margin: 6px 0 0; padding: 8px 10px; border-radius: 8px; background: #f8fafc; color: var(--pm-text-2); font-size: 12.5px; }
+.ld-reason { margin: 6px 0 0; padding: 8px 10px; border-radius: 8px; background: #fafafa; color: var(--pm-text-2); font-size: 12.5px; }
 </style>

@@ -1,106 +1,151 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand colours */
-  --color-primary: #10b981;
-  --color-primary-hover: #059669;
-  --color-navy: #0f172a;
-  --color-accent: #f59e0b;
-  --color-background: #f8fafc;
-  --color-surface: #ffffff;
-  --color-muted: #64748b;
-  --color-border: #e2e8f0;
+    /* Brand: coral red + near-black. primary-hover is also the shade for red text on white (AA contrast). */
+    --color-primary: #e70c2a;
+    --color-primary-hover: #e70c2a;
+    --color-primary-soft: #fff1f1;
+    --color-ink: #0b0b0c;
+    --color-accent: #f59e0b;
+    --color-background: #faf8f6;
+    --color-surface: #ffffff;
+    --color-muted: #6b6b6b;
+    --color-border: #e4e4e7;
 
-  /* Radius */
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
 
-  /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 20px 30px rgba(0, 0, 0, 0.1);
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 20px 30px rgba(0, 0, 0, 0.1);
 
-  /* Font (loaded in index.html) */
-  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    /* Font (loaded in index.html) */
+    --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 @layer base {
-  html {
-    -webkit-text-size-adjust: 100%;
-  }
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
 
-  body {
-    font-family: var(--font-sans);
-    background-color: var(--color-background);
-    color: var(--color-navy);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: clip;
-  }
+    body {
+        font-family: var(--font-sans);
+        background-color: var(--color-background);
+        color: var(--color-ink);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: clip;
+    }
 
-  /* Visible focus for anything that doesn't set its own ring */
-  :focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
+    /* Visible focus for anything that doesn't set its own ring */
+    :focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
 
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  input[type='number'] {
-    -moz-appearance: textfield;
-  }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
 }
 
-/* Home hero: faint grid texture and a gentle entrance */
+.hero-gradient {
+    background-color: #0b0b0c;
+    background-image: radial-gradient(
+            60rem 36rem at 88% 115%,
+            rgba(231, 12, 42, 0.62) 0%,
+            rgba(231, 12, 42, 0) 62%
+        ),
+        radial-gradient(
+            40rem 26rem at 8% -12%,
+            rgba(231, 12, 42, 0.22) 0%,
+            rgba(231, 12, 42, 0) 60%
+        ),
+        linear-gradient(
+            155deg,
+            #0b0b0c 0%,
+            #121012 48%,
+            #2b0f12 82%,
+            #4a1418 100%
+        );
+}
+
+.hero-photo-tint {
+    background-image: linear-gradient(
+            180deg,
+            rgba(11, 11, 12, 0.82) 0%,
+            rgba(11, 11, 12, 0.5) 45%,
+            rgba(11, 11, 12, 0.88) 100%
+        ),
+        linear-gradient(
+            35deg,
+            rgba(231, 12, 42, 0.45) 0%,
+            rgba(231, 12, 42, 0) 55%
+        );
+}
+
 .hero-grid {
-  background-image:
-    linear-gradient(to right, #fff 1px, transparent 1px),
-    linear-gradient(to bottom, #fff 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%);
+    background-image: linear-gradient(to right, #fff 1px, transparent 1px),
+        linear-gradient(to bottom, #fff 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(
+        ellipse 70% 60% at 50% 40%,
+        #000 30%,
+        transparent 100%
+    );
 }
 
 @keyframes hero-fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-fade {
-  animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .hero-fade-delay {
-  animation-delay: 0.12s;
+    animation-delay: 0.12s;
 }
 .hero-fade-delay-2 {
-  animation-delay: 0.24s;
+    animation-delay: 0.24s;
 }
 
 @keyframes scroll-cue {
-  0%, 100% { transform: translateY(0); opacity: 0.7; }
-  50% { transform: translateY(5px); opacity: 1; }
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(5px);
+        opacity: 1;
+    }
 }
 .scroll-cue {
-  animation: scroll-cue 1.8s ease-in-out infinite;
+    animation: scroll-cue 1.8s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+    html {
+        scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
 }

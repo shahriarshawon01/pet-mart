@@ -126,7 +126,7 @@ export default function ForgotPassword() {
       title="Reset your password"
       subtitle="We will send a 6-digit code to your mobile number."
       footer={
-        <Link to="/login" className="inline-flex items-center gap-1 font-semibold text-primary-hover hover:underline">
+        <Link to="/login" className="inline-flex items-center gap-1 font-semibold text-primary hover:underline">
           <ArrowLeft size={14} aria-hidden="true" /> Back to log in
         </Link>
       }
@@ -136,12 +136,12 @@ export default function ForgotPassword() {
           <li key={label} className="flex flex-1 items-center gap-2" aria-current={i === step ? 'step' : undefined}>
             <span
               className={`grid h-8 w-8 shrink-0 place-items-center rounded-full text-xs font-bold ${
-                i < step ? 'bg-primary text-white' : i === step ? 'bg-primary/15 text-primary-hover ring-2 ring-primary' : 'bg-slate-100 text-slate-400'
+                i < step ? 'bg-primary text-white' : i === step ? 'bg-primary/15 text-primary ring-2 ring-primary' : 'bg-zinc-100 text-zinc-400'
               }`}
             >
               <Icon size={15} aria-hidden="true" />
             </span>
-            <span className={`hidden text-xs font-semibold sm:inline ${i === step ? 'text-navy' : 'text-muted'}`}>{label}</span>
+            <span className={`hidden text-xs font-semibold sm:inline ${i === step ? 'text-ink' : 'text-muted'}`}>{label}</span>
             {i < STEPS.length - 1 && <span className="h-px flex-1 bg-border" aria-hidden="true" />}
           </li>
         ))}
@@ -167,10 +167,11 @@ export default function ForgotPassword() {
       {step === 1 && (
         <form onSubmit={verifyCode} noValidate className="space-y-5">
           <p className="text-sm text-muted">
-            Enter the code sent to <span className="font-semibold text-navy">{phone}</span>. It expires in 10 minutes.
+            Enter the code sent to <span className="font-semibold text-ink">{phone}</span>. It expires in 10 minutes.
           </p>
           <Input
             id="reset-otp"
+            placeholder="Enter the 6-digit code"
             label="6-digit code"
             required
             inputMode="numeric"
@@ -184,12 +185,12 @@ export default function ForgotPassword() {
             Verify code
           </Button>
           <div className="flex items-center justify-between text-sm">
-            <button type="button" className="font-semibold text-muted hover:text-navy" onClick={() => setStep(0)}>
+            <button type="button" className="font-semibold text-muted hover:text-ink" onClick={() => setStep(0)}>
               Change number
             </button>
             <button
               type="button"
-              className="font-semibold text-primary-hover hover:underline disabled:cursor-not-allowed disabled:text-muted disabled:no-underline"
+              className="font-semibold text-primary hover:underline disabled:cursor-not-allowed disabled:text-muted disabled:no-underline"
               disabled={cooldown > 0 || loading}
               onClick={requestCode}
             >
@@ -203,6 +204,7 @@ export default function ForgotPassword() {
         <form onSubmit={savePassword} noValidate className="space-y-5">
           <PasswordInput
             id="reset-password"
+            placeholder="Create a new password"
             label="New password"
             required
             autoComplete="new-password"
@@ -212,6 +214,7 @@ export default function ForgotPassword() {
           />
           <PasswordInput
             id="reset-confirm"
+            placeholder="Re-enter the new password"
             label="Confirm new password"
             required
             autoComplete="new-password"

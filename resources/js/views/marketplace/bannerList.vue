@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-md-4">
                     <label class="form-label" for="b-order">Order</label>
-                    <input id="b-order" name="sort_order" type="number" min="0" v-model.number="formObject.sort_order" class="form-control">
+                    <input id="b-order" name="sort_order" type="number" min="0" v-model.number="formObject.sort_order" class="form-control" placeholder="0">
                 </div>
                 <div class="col-12">
                     <div class="form-check form-switch">

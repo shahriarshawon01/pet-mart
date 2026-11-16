@@ -24,12 +24,12 @@ export default function UiKit() {
 
   return (
     <Container className="py-12">
-      <h1 className="text-3xl font-bold text-navy mb-2">PetMart UI Kit</h1>
+      <h1 className="text-3xl font-bold text-ink mb-2">PetMart UI Kit</h1>
       <p className="text-muted mb-10">Design system preview — dev only</p>
 
       {/* Buttons */}
       <section className="mb-10">
-        <h2 className="text-xl font-bold text-navy mb-4">Buttons</h2>
+        <h2 className="text-xl font-bold text-ink mb-4">Buttons</h2>
         <div className="flex flex-wrap gap-3">
           <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
@@ -46,7 +46,7 @@ export default function UiKit() {
 
       {/* Badges */}
       <section className="mb-10">
-        <h2 className="text-xl font-bold text-navy mb-4">Badges</h2>
+        <h2 className="text-xl font-bold text-ink mb-4">Badges</h2>
         <div className="flex flex-wrap gap-3">
           <Badge color="primary">Featured</Badge>
           <Badge color="amber">Stud</Badge>
@@ -59,7 +59,7 @@ export default function UiKit() {
 
       {/* Form Fields */}
       <section className="mb-10">
-        <h2 className="text-xl font-bold text-navy mb-4">Form Fields</h2>
+        <h2 className="text-xl font-bold text-ink mb-4">Form Fields</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
           <Input label="Full Name" placeholder="Enter your name" required hint="Your legal name" />
           <Input label="Email" placeholder="email@example.com" error="Invalid email address" />
@@ -75,7 +75,7 @@ export default function UiKit() {
 
       {/* Modal */}
       <section className="mb-10">
-        <h2 className="text-xl font-bold text-navy mb-4">Modal & ConfirmDialog</h2>
+        <h2 className="text-xl font-bold text-ink mb-4">Modal & ConfirmDialog</h2>
         <div className="flex gap-3">
           <Button onClick={() => setModalOpen(true)}>Open Modal</Button>
           <Button variant="danger" onClick={() => setConfirmOpen(true)}>Open ConfirmDialog</Button>
@@ -100,7 +100,7 @@ export default function UiKit() {
 
       {/* Skeleton & Spinner */}
       <section className="mb-10">
-        <h2 className="text-xl font-bold text-navy mb-4">Loading States</h2>
+        <h2 className="text-xl font-bold text-ink mb-4">Loading States</h2>
         <div className="flex items-center gap-6 mb-6">
           <Spinner size={24} />
           <Spinner size={36} />
@@ -115,7 +115,7 @@ export default function UiKit() {
 
       {/* ImageWithFallback */}
       <section className="mb-10">
-        <h2 className="text-xl font-bold text-navy mb-4">ImageWithFallback</h2>
+        <h2 className="text-xl font-bold text-ink mb-4">ImageWithFallback</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl">
           <ImageWithFallback src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=300" alt="Dog" className="rounded-xl overflow-hidden" />
           <ImageWithFallback src="https://broken-url-test.invalid/image.jpg" alt="Broken image test" className="rounded-xl overflow-hidden" />
@@ -124,7 +124,7 @@ export default function UiKit() {
 
       {/* EmptyState */}
       <section className="mb-10">
-        <h2 className="text-xl font-bold text-navy mb-4">EmptyState</h2>
+        <h2 className="text-xl font-bold text-ink mb-4">EmptyState</h2>
         <Card>
           <EmptyState
             icon={Search}
@@ -138,7 +138,7 @@ export default function UiKit() {
 
       {/* Pagination */}
       <section className="mb-10">
-        <h2 className="text-xl font-bold text-navy mb-4">Pagination</h2>
+        <h2 className="text-xl font-bold text-ink mb-4">Pagination</h2>
         <Pagination currentPage={page} lastPage={10} onPageChange={setPage} />
       </section>
     </Container>
