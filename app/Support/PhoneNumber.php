@@ -2,12 +2,6 @@
 
 namespace App\Support;
 
-/**
- * Bangladesh mobile numbers.
- *
- * Canonical stored form: +8801XXXXXXXXX (14 characters).
- * Accepts 01XXXXXXXXX, 8801XXXXXXXXX, +8801XXXXXXXXX, with spaces or dashes.
- */
 final class PhoneNumber
 {
     public const PATTERN = '/^\+8801[3-9]\d{8}$/';

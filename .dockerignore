@@ -1,14 +1,36 @@
 .git
 .github
-node_modules
+.idea
+.vscode
+
+# dependencies are installed inside the image (any depth)
+**/node_modules
 vendor
+
+# build output and local env files of the React app
+frontend/dist
+frontend/.env*
+
+# secrets and local env files
+.env
+.env.*
+!.env.example
+!.env.docker.example
+!.env.docker.db.example
+
+# runtime data: never bake uploads, logs, caches or the local storage symlink into the image
+storage/app/public/*
+storage/app/private/*
 storage/logs/*
 storage/framework/cache/*
 storage/framework/sessions/*
 storage/framework/views/*
-.env
-.env.backup
+bootstrap/cache/*.php
+public/storage
+public/hot
+
 *.md
+docs
 tests
 phpunit.xml
-.editorconfig
+.phpunit.result.cache

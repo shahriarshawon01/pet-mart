@@ -1,0 +1,103 @@
+# Local / single-server stack.
+#
+# First time:
+#   cp .env.docker.example .env.docker         # app settings, fill in APP_KEY and DB_PASSWORD
+#   cp .env.docker.db.example .env.docker.db   # MySQL settings, same password as DB_PASSWORD
+#   docker compose up -d --build
+#   docker compose exec app php artisan db:seed --force    # once, on an empty database only
+#
+# Optional database UI:  docker compose --profile tools up -d phpmyadmin
+#
+# Secrets live only in .env.docker and .env.docker.db (both gitignored). Nothing secret belongs in this file.
+
+services:
+  # ─── MySQL ────────────────────────────────────────────────
+  db:
+    image: mysql:8.0
+    container_name: petmart-db
+    restart: unless-stopped
+    env_file: .env.docker.db
+    ports:
+      - "127.0.0.1:3309:3306"   # reachable from this machine only
+    volumes:
+      - petmart_mysql_data:/var/lib/mysql
+    networks:
+      - petmart-net
+    healthcheck:
+      # mysqladmin ping succeeds when the server is up, without needing a password
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # ─── Laravel API + admin panel ────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: app
+    container_name: petmart-app
+    restart: unless-stopped
+    env_file: .env.docker
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+    ports:
+      - "8080:8080"
+    volumes:
+      # uploaded photos survive container rebuilds (public/storage points here)
+      - petmart_storage:/var/www/html/storage/app
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - petmart-net
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/up"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+  # ─── PetMart customer site (React) ────────────────────────
+  pet-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: pet-web
+      args:
+        # Public URL of the API as the browser sees it. Change per environment.
+        VITE_API_BASE_URL: http://localhost:8080/api/v1
+    container_name: petmart-web
+    restart: unless-stopped
+    ports:
+      - "8082:80"
+    depends_on:
+      - app
+    networks:
+      - petmart-net
+
+  # ─── phpMyAdmin (dev only, not started by default) ────────
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2
+    container_name: petmart-phpmyadmin
+    profiles: ["tools"]
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - petmart-net
+
+volumes:
+  petmart_mysql_data:
+  petmart_storage:
+
+networks:
+  petmart-net:
+    driver: bridge

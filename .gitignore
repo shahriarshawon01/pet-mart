@@ -20,7 +20,7 @@ yarn-error.log
 /.vscode
 rr
 .rr.yaml
-docker-compose.yml
-Dockerfile
-/docker
 
+# Docker secrets (examples are committed: .env.docker.example, .env.docker.db.example)
+.env.docker
+.env.docker.db
